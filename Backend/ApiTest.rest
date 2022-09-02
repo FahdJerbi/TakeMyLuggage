@@ -1,0 +1,61 @@
+##############################################   User Auth routes Tests    ################################
+# register test
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+    "firstName": "sawssen",
+    "lastName": "jandoubi",
+    "email":"sawssen@gmail.com",
+    "password": "123456Sawssen."
+}
+
+# "password": "123456Name."
+#####################################
+
+##### Login test
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "firstName": "sawssen",
+    "lastName": "jandoubi",
+    "email":"sawssen@gmail.com",
+    "password": "123456Sawssen."
+}
+
+##############################################   Order routes Tests    ################################
+### Get all the orders 
+GET http://localhost:8000/api/getOrders
+
+### Get orders by User
+Get http://localhost:8000/api/getUserOrders/630691b132c19f793cfa3f4c
+
+##### Create order 
+POST http://localhost:8000/api/create/6306922a32c19f793cfa3f50
+Content-Type: application/json
+
+{
+  "start_lat": 78,
+  "start_lng": 96,
+  "end_lat": 42,
+  "end_lng": 25,
+  "distance": 789,
+  "time": 226
+}
+
+#### Update order
+PUT http://localhost:8000/api/update/630f6d6f9e74853ab83184b4
+Content-Type: application/json
+
+{
+  "start_lat": 8,
+  "start_lng": 2,
+  "end_lat": 95,
+  "end_lng": 7,
+  "distance": 234463,
+  "time": 6012
+}
+
+#### delete order
+DELETE http://localhost:8000/api/delete/630e9d3ecdf135a36a2b2a01

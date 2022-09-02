@@ -1,0 +1,15 @@
+/* .path-data {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.sidebar {
+  border: 1px solid green;
+  /* display: flex; */
+}
+
+.name {
+  border: 1px solid red;
+}

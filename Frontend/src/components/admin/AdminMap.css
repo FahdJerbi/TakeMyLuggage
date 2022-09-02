@@ -1,0 +1,19 @@
+.leaflet-container {
+  height: 90vh;
+  width: 100vw;
+  margin-top: 64px;
+}
+
+/* Routing machine itinerary controle */
+.leaflet-routing-alternatives-container {
+  display: none;
+}
+
+/* .leaflet-routing-container {
+  display: none;
+} */
+
+/* .leaflet-routing-geocoder input {
+  background-color: red;
+  border-style: solid;
+} */
