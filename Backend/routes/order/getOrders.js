@@ -11,6 +11,6 @@ module.exports = async (req, res) => {
     });
   } catch (error) {
     if (error) throw error;
-    res.status(400).json({ message: error });
+    res.status(400).json({ error: "bad" });
   }
 };

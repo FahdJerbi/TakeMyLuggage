@@ -3,7 +3,10 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Box from "@mui/material/Box";
 import { Toolbar } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 const OrderForm = ({
   start_y,
@@ -23,6 +26,9 @@ const OrderForm = ({
     Time: "",
   });
 
+  const [responseMsg, setResponseMsg] = useState("");
+  const [error, setError] = useState("");
+
   // handle change for all the inputs
   useEffect(() => {
     setFormData({
@@ -33,8 +39,35 @@ const OrderForm = ({
     });
   }, [start_y, start_x, end_y, end_x, pathDistance, pathTime]);
 
+  const dispatch = useDispatch();
+
+  // get user id and
+  const id = localStorage.getItem("id");
+  const token = localStorage.getItem("auth-token");
+
+  // send user login inputs to server
+  const handleOrder = async () => {
+    await axios
+      .post(`/api/create/${id}`, {
+        start_lat: start_y,
+        start_lng: start_x,
+        end_lat: end_y,
+        end_lng: end_x,
+        distance: pathDistance,
+        time: pathTime,
+      })
+      .then((res) => {
+        console.log("ok");
+        console.log(res);
+      })
+      .catch((error) => {
+        // setError(error);
+        console.log(error);
+      });
+  };
+
   return (
-    <div>
+    <Box component="form">
       {/* <Toolbar /> */}
       {/* <TextField
         value={start_y && start_x ? formData.StartPoint : ""}
@@ -86,10 +119,15 @@ const OrderForm = ({
           endAdornment: <InputAdornment position="end">min</InputAdornment>,
         }}
       />
-      <Button startIcon={<CheckCircleOutlineIcon />} variant="contained">
+      <Button
+        type='button'
+        onClick={() => handleOrder()}
+        startIcon={<CheckCircleOutlineIcon />}
+        variant="contained"
+      >
         Add Order
       </Button>
-    </div>
+    </Box>
   );
 };
 

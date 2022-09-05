@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "client": "cd ../Frontend && npm start",
-    "dev": "concurrently -n server,client --prefix-colors red,green \"nodemon server.js\" \"npm run client\""
+    "dev": "concurrently -n server,client --prefix-colors red,yellow \"nodemon server.js\" \"npm run client\""
   },
   "keywords": [],
   "author": "",

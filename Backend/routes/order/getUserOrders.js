@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     let UserOrders = await Order.find({ userId: id });
     res.status(200).json({
       message: "get User orders is working !",
-      data: UserOrders,
+      UserOrders,
     });
   } catch (error) {
     if (error) throw error;

@@ -6,6 +6,7 @@ const UserPrivateRoute = ({ children }) => {
   let isUser = localStorage.getItem("isUser");
 
   if (!isUser && !authToken) {
+    console.log(authToken);
     return <Navigate to="/login" />;
   }
 

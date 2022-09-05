@@ -1,6 +1,7 @@
 // imports
 const express = require("express");
 const router = express.Router();
+const verifyToken = require("../../middlewares/verifyToken");
 const Order = require("../../models/orderModel");
 const User = require("../../models/userModel");
 // -----------------------------------------
@@ -16,7 +17,7 @@ router.get("/getUserOrders/:id", require("./getUserOrders"));
 router.post("/create/:id", require("./createOrder"));
 
 // Update orders
-router.put("/update/:id", require("./updateOrder"));
+router.put("/update/:id", verifyToken, require("./updateOrder"));
 
 // delete order
 router.delete("/delete/:id", require("./deleteOrder"));

@@ -3,6 +3,6 @@ import routingMachineReducer from "./routingMachineSlice";
 
 export const store = configureStore({
   reducer: {
-    routingMachineData: routingMachineReducer
-  }
+    routingMachineData: routingMachineReducer, //get data from LRM Api
+  },
 });

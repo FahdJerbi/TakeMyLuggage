@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // ------------------------    Material UI imports    ----------------------
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -47,7 +47,7 @@ export default function SignIn() {
 
   const handleChange = (e) => {
     setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
-    console.log(userInputs);
+    // console.log(userInputs);
   };
 
   const navigate = useNavigate();
@@ -63,14 +63,21 @@ export default function SignIn() {
       .then((res) => {
         localStorage.setItem("auth-token", res.data.token),
           localStorage.setItem("isUser", res.data.isUser),
-          localStorage.setItem("id", res.data.id),
+          // localStorage.setItem("id", res.data.id),
           navigate("/map");
         // console.log(res);
       })
-      .catch((error) => {
+      .catch((error) => { 
         setError(error);
+        // console.log(error);
       });
   };
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setError("");
+  //   }, 6000);
+  // }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -118,6 +125,7 @@ export default function SignIn() {
               autoComplete="current-password"
               // onChange={handleChange}
             />
+            {/* <span>{error}</span> */}
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

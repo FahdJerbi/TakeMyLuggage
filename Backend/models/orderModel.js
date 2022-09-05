@@ -14,7 +14,10 @@ const Schema = mongoose.Schema;
 
 // ---------------------------------------
 
-const schemaDetails = { type: Number, required: true };
+const schemaDetails = {
+  type: Number,
+  required: true,
+};
 
 const OrderSchema = new Schema(
   {
