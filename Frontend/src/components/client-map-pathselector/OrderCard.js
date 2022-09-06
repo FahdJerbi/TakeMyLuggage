@@ -32,9 +32,17 @@ function OrderCard() {
 
   return (
     <div>
-      {myOrders.map((order) => {
+      {/* {myOrders.map((order) => {
         return <OrderCardItems key={order._id} {...order} />;
-      })}
+      })} */}
+
+      {myOrders.length >= 1 ? (
+        myOrders.map((order) => {
+          return <OrderCardItems key={order._id} {...order} />;
+        })
+      ) : (
+        <h3>Nothing here yet !</h3>
+      )}
     </div>
   );
 }

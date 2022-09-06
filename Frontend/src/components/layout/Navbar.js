@@ -7,21 +7,32 @@ const Navbar = () => {
     <div>
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        // sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            TakeMyLuggage
+            <Link to="/">TakeMyLuggage</Link>
           </Typography>
 
-          <Link to="/">
-            <Button color="inherit">Map</Button>
-          </Link>
-          <Link to="/dash">
-            <Button color="inherit">Dashboard</Button>
-          </Link>
+          {/* User map */}
+          <Button color="inherit">
+            <Link to="map">Map</Link>
+          </Button>
+
+          {/* Driver map */}
+          <Button color="inherit">
+            <Link to="driver">Driver</Link>
+          </Button>
           <Divider />
-          <Button color="inherit">Login</Button>
+          {/* Login compoenent */}
+          <Button color="inherit">
+            <Link to="login">Login</Link>
+          </Button>
+
+          {/* Register component  */}
+          <Button color="inherit">
+            <Link to="register">Sign Up</Link>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

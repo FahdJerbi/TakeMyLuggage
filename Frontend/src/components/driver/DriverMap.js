@@ -1,16 +1,16 @@
 import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import RoutingMachine from "./RoutingMachine";
-import ClientPathSelector from "./ClientPathSelector";
-import "./ClientMap.css";
+import DriverRoutingMachine from "./DriverRoutingMachine";
+import DriverSideBar from "./DriverSideBar";
+import "./DriverMap.css";
 
-const ClientMap = () => {
+const DriverMap = () => {
   const Tunisie = [33.88, 9.53];
 
   return (
     <div style={{ display: "flex" }}>
       {/* user inputs component */}
-      <ClientPathSelector />
+      <DriverSideBar />
 
       {/* Map component */}
       <MapContainer center={Tunisie} zoom={7}>
@@ -19,10 +19,10 @@ const ClientMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {/* leaflet routing machine component */}
-        <RoutingMachine />
+        <DriverRoutingMachine />
       </MapContainer>
     </div>
   );
 };
 
-export default ClientMap;
+export default DriverMap;

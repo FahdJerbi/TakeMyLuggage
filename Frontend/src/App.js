@@ -6,6 +6,7 @@ import "./styles.css";
 import Layout from "./components/views/Layout";
 import AdminMap from "./components/admin/AdminMap";
 import UserPrivateRoute from "./components/routes/UserPrivateRoute";
+import DriverMap from "./components/driver/DriverMap";
 
 export default function App() {
   return (
@@ -28,6 +29,9 @@ export default function App() {
               </UserPrivateRoute>
             }
           />
+
+          {/*  Driver route */}
+          <Route path="driver" element={<DriverMap />} />
 
           {/* create a private route for Admin map */}
           <Route path="admin" element={<AdminMap />} />
