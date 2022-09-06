@@ -39,8 +39,6 @@ const OrderForm = ({
     });
   }, [start_y, start_x, end_y, end_x, pathDistance, pathTime]);
 
-  const dispatch = useDispatch();
-
   // get user id and
   const id = localStorage.getItem("id");
   const token = localStorage.getItem("auth-token");
@@ -58,11 +56,11 @@ const OrderForm = ({
       })
       .then((res) => {
         console.log("ok");
-        console.log(res);
+        setResponseMsg(res.data.message);
       })
       .catch((error) => {
-        // setError(error);
         console.log(error);
+        setError(error);
       });
   };
 
@@ -119,8 +117,12 @@ const OrderForm = ({
           endAdornment: <InputAdornment position="end">min</InputAdornment>,
         }}
       />
+
+      {/* Order confirmation message */}
+      {/* {handleOrder ? Error : responseMsg} */}
+
       <Button
-        type='button'
+        type="button"
         onClick={() => handleOrder()}
         startIcon={<CheckCircleOutlineIcon />}
         variant="contained"

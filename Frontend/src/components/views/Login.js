@@ -63,13 +63,13 @@ export default function SignIn() {
       .then((res) => {
         localStorage.setItem("auth-token", res.data.token),
           localStorage.setItem("isUser", res.data.isUser),
-          // localStorage.setItem("id", res.data.id),
+          localStorage.setItem("id", res.data.id),
           navigate("/map");
         // console.log(res);
       })
       .catch((error) => { 
-        setError(error);
-        // console.log(error);
+        // setError(error);
+        console.log(error);
       });
   };
 
