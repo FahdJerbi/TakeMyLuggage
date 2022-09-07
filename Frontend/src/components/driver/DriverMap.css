@@ -9,9 +9,9 @@
   display: none;
 }
 
-/* .leaflet-routing-container {
+.leaflet-routing-container {
   display: none;
-} */
+}
 
 /* .leaflet-routing-geocoder input {
   background-color: red;

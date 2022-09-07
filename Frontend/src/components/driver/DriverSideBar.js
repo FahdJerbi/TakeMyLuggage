@@ -7,6 +7,8 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 // --------------------------------   my components imports ---------------
 import DriverCard from "./DriverCard";
+import Switcher from "./Switcher";
+import SwitcherContainer from "./SwitcherContainer";
 // import "./styles.css";
 
 const drawerWidth = 300;
@@ -26,7 +28,11 @@ const DriverSideBar = () => {
       variant="permanent"
       anchor="left"
     >
-      {/* <Toolbar /> */}
+      {/* <Switcher /> */}
+
+      <SwitcherContainer />
+
+      <Toolbar />
       <Divider />
 
       {/* *********************    accept User Orders Component ******************** */}
