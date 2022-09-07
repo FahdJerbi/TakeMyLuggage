@@ -14,11 +14,14 @@ connectDB();
 // middleware
 app.use(express.json());
 
-// user route
+// user routes
 app.use("/api", require("./routes/user/userRoutes"));
 
-// order route
-app.use("/api", require("./routes/order/orderRoute")); 
+// order routes
+app.use("/api", require("./routes/order/orderRoute"));
+
+// Driver routes
+app.use("/api", require("./routes/driver/driverRoute"));
 
 // init port
 app.listen(port, (err) => {
