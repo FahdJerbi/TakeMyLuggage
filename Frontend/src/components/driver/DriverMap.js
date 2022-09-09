@@ -14,15 +14,27 @@ const DriverMap = () => {
       <DriverSideBar />
 
       {/* Map component */}
-      <MapContainer center={Tunisie} zoom={7}>
-        {/* <SwitcherContainer /> */}
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {/* leaflet routing machine component */}
-        <DriverRoutingMachine />
-      </MapContainer>
+      <div
+      // style={{ border: "5px solid pink" }}
+      >
+        <SwitcherContainer />
+
+        <MapContainer
+          center={Tunisie}
+          zoom={7}
+          style={{
+            position: "fixed",
+            // zIndex: "50",
+          }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {/* leaflet routing machine component */}
+          <DriverRoutingMachine />
+        </MapContainer>
+      </div>
     </div>
   );
 };
