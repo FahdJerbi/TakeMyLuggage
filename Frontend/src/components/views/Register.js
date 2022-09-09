@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import MenuItem from "@mui/material/MenuItem";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // --------------------------------------
@@ -139,6 +140,30 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="outlined-select-currency"
+                  select
+                  label="Role"
+                  // value={currency}
+                  // onChange={handleChange}
+                  placeholder="Please select your role !"
+                >
+                  <MenuItem
+                  // value={isUser}
+                  >
+                    User
+                  </MenuItem>
+                  <MenuItem
+                  // value={isDriver}
+                  >
+                    Driver
+                  </MenuItem>
+                </TextField>
               </Grid>
               {/* <Grid item xs={12}>
                 <FormControlLabel
