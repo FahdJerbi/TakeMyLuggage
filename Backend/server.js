@@ -21,7 +21,7 @@ app.use("/api", require("./routes/user/userRoutes"));
 app.use("/api", require("./routes/order/orderRoute"));
 
 // Driver routes
-app.use("/api", require("./routes/driver/driverRoute"));
+app.use("/api/driver", require("./routes/driver/driverRoute"));
 
 // init port
 app.listen(port, (err) => {

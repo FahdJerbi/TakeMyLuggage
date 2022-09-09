@@ -28,10 +28,10 @@ const OrderSchema = new Schema(
     distance: schemaDetails,
     time: schemaDetails, // zid thabet
     // // assign the driver
-    // driverId: {
-    //   type: Schema.Types.ObjectId,
-    //   required: true,
-    // },
+    driverId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
     userId: {
       type: Schema.Types.ObjectId,
       required: true,

@@ -35,7 +35,7 @@ const DriverSchema = new Schema(
     },
     orderId: {
       type: Schema.Types.ObjectId,
-      required: true,
+      // required: true,
     },
     // userId: {
     //     type: Schema.Types.ObjectId,

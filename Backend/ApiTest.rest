@@ -4,10 +4,11 @@ POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "firstName": "sawssen",
-    "lastName": "jandoubi",
-    "email":"sawssen@gmail.com",
-    "password": "123456Sawssen."
+    "firstName": "Senna",
+    "lastName": "Black",
+    "email":"senna@gmail.com",
+    "password": "123456Senna.",
+    "isUser": true
 }
 
 # "password": "123456Name."
@@ -60,11 +61,11 @@ Content-Type: application/json
 #### delete order
 DELETE http://localhost:8000/api/delete/630e9d3ecdf135a36a2b2a01
 
-##############################################   Driver routes Tests    ################################
 
+##############################################   Driver routes Tests    ################################
 # get request 
-GET http://localhost:8000/api/getRequest
+GET http://localhost:8000/api/driver/getRequest
 
 ###
 # get request 
-POST http://localhost:8000/api/confirmRequest
+POST http://localhost:8000/api/driver/confirmRequest
