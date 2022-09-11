@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 
 function OrderCardItems({ _id, distance, time, userId }) {
-  console.log(distance, time);
+  // console.log(distance, time);
 
   return (
     <div>
