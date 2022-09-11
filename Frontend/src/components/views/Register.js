@@ -149,20 +149,13 @@ export default function SignUp() {
                   id="outlined-select-currency"
                   select
                   label="Role"
+                  name="Role"
                   // value={currency}
                   // onChange={handleChange}
                   placeholder="Please select your role !"
                 >
-                  <MenuItem
-                  // value={isUser}
-                  >
-                    User
-                  </MenuItem>
-                  <MenuItem
-                  // value={isDriver}
-                  >
-                    Driver
-                  </MenuItem>
+                  <MenuItem value={(isUser = true)}>User</MenuItem>
+                  <MenuItem value={(isDriver = true)}>Driver</MenuItem>
                 </TextField>
               </Grid>
               {/* <Grid item xs={12}>

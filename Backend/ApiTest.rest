@@ -19,8 +19,8 @@ POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-    "email":"lucian@gmail.com",
-    "password": "123456Lucian."
+    "email":"aly@gmail.com",
+    "password": "123456Aly."
 }
 
 ##############################################   Order routes Tests    ################################
@@ -60,9 +60,9 @@ Content-Type: application/json
 DELETE http://localhost:8000/api/delete/630e9d3ecdf135a36a2b2a01
 
 
-##############################################   Driver routes Tests    ################################
+###################################################       Driver routes Tests       ################################
 # get request 
-GET http://localhost:8000/api/driver/getRequest
+GET http://localhost:8000/api/driver/getRequest/631cb42d85e7cbf68c6e603c
 
 ###
 # get request 

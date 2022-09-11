@@ -15,10 +15,13 @@ import Button from "@mui/material/Button";
 // -------------------------------------------------------
 import axios from "axios";
 
-function OrderCardItems() {
+function OrderCardItems({ _id, distance, time, userId }) {
+  console.log(distance, time);
+
   return (
     <div>
       <Card
+        key={_id}
         sx={{
           width: 250,
           display: "flex",
@@ -33,14 +36,14 @@ function OrderCardItems() {
               R
             </Avatar>
           }
-          title="User Name"
+          title={`User id: ${userId}`}
           subheader="Pending..."
         />
         <CardContent>
-          <Typography>Source: </Typography>
-          <Typography>Destination: </Typography>
-          <Typography>Distance: km </Typography>
-          <Typography>Path Time: min </Typography>
+          {/* <Typography>Source: </Typography>
+          <Typography>Destination: </Typography> */}
+          <Typography>Distance: {distance} km </Typography>
+          <Typography>time Time:{time} min </Typography>
         </CardContent>
         <CardActions disableSpacing>
           <Button>Accept</Button>

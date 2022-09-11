@@ -4,41 +4,82 @@ const User = require("../../models/userModel");
 const Driver = require("../../models/driverModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { $where } = require("../../models/userModel");
 const SECRET_TOKEN = process.env.SECRET_TOKEN;
 
 module.exports = async (req, res) => {
   try {
     let { email, password } = req.body;
+    // console.log("password:", password);
     // check if user email does exists in DB
     const checkUserLoginEmail = await User.findOne({ email });
-
+    // let checkUserPassword;
     // check if Driver email does exists in DB
     const checkDriverLoginEmail = await Driver.findOne({ email });
-
-    if (!checkUserLoginEmail || !checkDriverLoginEmail) {
+    // let checkDriverPassword;
+    if (!checkUserLoginEmail && !checkDriverLoginEmail) {
       return res
         .status(401)
         .json({ message: "Wrong email, please try again !" });
     }
+
     // --------------------------------------------------------
 
     // check if user password is correct
-    const checkUserPassword = await bcrypt.compare(
-      password,
-      checkUserLoginEmail.password
-    );
+    // const checkUserPassword = await bcrypt.compare(
+    //   password,
+    //   checkUserLoginEmail.password
+    // );
+    let checkUserPassword;
 
     // check if user password is correct
-    const checkDriverPassword = await bcrypt.compare(
-      password,
-      checkDriverLoginEmail.password
-    );
+    // let checkDriverPassword = await bcrypt.compare(
+    //   password,
+    // );
+    // const checkDriverPassword = await bcrypt.compare(
+    //   password,
+    //   checkDriverLoginEmail.password
+    // );
+    let checkDriverPassword;
 
-    if (!checkUserPassword || !checkDriverPassword) {
+    // -----------------------------  it works --------------------
+    {
+      checkUserLoginEmail
+        ? (checkUserPassword = await bcrypt.compare(
+            password,
+            checkUserLoginEmail.password
+          ))
+        : (checkDriverPassword = await bcrypt.compare(
+            password,
+            checkDriverLoginEmail.password
+          ));
+      // console.log(checkDriverPassword)
+    }
+
+    if (!checkDriverPassword && !checkUserPassword) {
       return res
         .status(401)
         .json({ message: "Wrong password, please try again !" });
     }
+    // ------------------------------------------------------------
+
+    // if (checkUserLoginEmail) {
+    //   checkUserPassword = await bcrypt.compare(
+    //     password,
+    //     checkUserLoginEmail.password
+    //   );
+    //   return res
+    //     .status(401)
+    //     .json({ message: "Wrong User password, please try again !" });
+    // } else if (checkDriverLoginEmail) {
+    //   checkDriverPassword = await bcrypt.compare(
+    //     password,
+    //     checkDriverLoginEmail.password
+    //   );
+    //   return res
+    //     .status(401)
+    //     .json({ message: "Wrong Driver password, please try again !" });
+    // }
 
     // --------------------------------------------------------
     // create token
@@ -82,27 +123,6 @@ module.exports = async (req, res) => {
         id: checkDriverLoginEmail._id,
       });
     }
-
-    // const token = jwt.sign(
-    //   {
-    //     id: checkUserPassword._id,
-    //     password: checkUserPassword.password,
-    //     email: checkUserPassword.email,
-    //     isAdmin: checkUserPassword.isAdmin,
-    //   },
-    //   SECRET_TOKEN,
-    //   { expiresIn: "10h" }
-    // );
-
-    // res.send("logged in successfully !");
-    // res.status(200).header("auth-token", token).json({
-    //   status: true,
-    //   message: "logged in successfully !",
-    //   // token,
-    //   isDriver: checkDriverLoginEmail.isDriver,
-    //   // isAdmin: checkLoginEmail.isAdmin,
-    //   id: checkLoginEmail._id,
-    // });
   } catch (error) {
     if (error) throw error;
     res.send(400).json({ status: false, error });

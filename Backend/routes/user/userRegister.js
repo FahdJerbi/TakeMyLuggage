@@ -63,14 +63,28 @@ module.exports = async (req, res) => {
 
     // -----------------------------------------------------
     // save the new user into the database
-    const newUSer = await user.save();
+    let newUSer;
+    // = await user.save();
 
     // save the new user into the database
-    const newDriver = await driver.save();
+    let newDriver;
+    // = await driver.save();
 
     // check if client is registered as User or Driver
+    // {
+    //   isUser ? newUSer : newDriver;
+    // }
+
+    // if (isUser) {
+    //   newUSer = await user.save();
+    // } else if (isDriver) {
+    //   newDriver = await driver.save();
+    // }
+
     {
-      isUser ? newUSer : newDriver;
+      isUser
+        ? (newUSer = await user.save())
+        : (newDriver = await driver.save());
     }
 
     // -----------------------------------------------------
