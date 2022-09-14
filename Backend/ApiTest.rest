@@ -4,11 +4,11 @@ POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "firstName": "Senna",
-    "lastName": "Black",
-    "email":"senna@gmail.com",
-    "password": "123456Senna.",
-    "isUser": true
+    "firstName": "Jeff",
+    "lastName": "Bezos",
+    "email":"jeff@gmail.com",
+    "password": "123456Jeff.",
+    "role": 2
 }
 
 # "password": "123456Name."

@@ -33,7 +33,7 @@ export default function App() {
           <Route
             path="driver"
             element={
-              <DriverPrivateRoute> 
+              <DriverPrivateRoute>
                 <DriverMap />
               </DriverPrivateRoute>
             }

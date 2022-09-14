@@ -93,6 +93,7 @@ module.exports = async (req, res) => {
           password: checkUserLoginEmail.password,
           email: checkUserLoginEmail.email,
           isUser: checkUserLoginEmail.isUser,
+          isAdmin: checkUserLoginEmail.isAdmin,
         },
         SECRET_TOKEN,
         { expiresIn: "10h" }
@@ -102,15 +103,17 @@ module.exports = async (req, res) => {
         message: "User logged in successfully !",
         token,
         isUser: checkUserLoginEmail.isUser,
+        isAdmin: checkUserLoginEmail.isAdmin,
         id: checkUserLoginEmail._id,
       });
-    } else if (checkDriverPassword) {
+    } else {
       token = jwt.sign(
         {
           id: checkDriverLoginEmail._id,
           password: checkDriverLoginEmail.password,
           email: checkDriverLoginEmail.email,
           isDriver: checkDriverLoginEmail.isDriver,
+          isAdmin: checkDriverLoginEmail.isAdmin,
         },
         SECRET_TOKEN,
         { expiresIn: "10h" }
@@ -120,6 +123,7 @@ module.exports = async (req, res) => {
         message: "Driver logged in successfully !",
         token,
         isDriver: checkDriverLoginEmail.isDriver,
+        isAdmin: checkDriverLoginEmail.isAdmin,
         id: checkDriverLoginEmail._id,
       });
     }

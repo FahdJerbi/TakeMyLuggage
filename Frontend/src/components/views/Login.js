@@ -52,7 +52,7 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
-  // send user login inputs to server
+  // send User/Driver login inputs to server
   const handleLogin = async () => {
     await axios
       .post(
@@ -61,23 +61,33 @@ export default function SignIn() {
         // { email: "sawssen@gmail.com", password: "123456Sawssen." }
       )
       .then((res) => {
-        localStorage.setItem("auth-token", res.data.token),
-          localStorage.setItem("isUser", res.data.isUser),
-          localStorage.setItem("id", res.data.id),
-          navigate("/map");
-        // console.log(res);
+        if (res.data.isUser) {
+          localStorage.setItem("auth-token", res.data.token),
+            localStorage.setItem("isUser", res.data.isUser),
+            localStorage.setItem("isAdmin", res.data.isAdmin),
+            localStorage.setItem("id", res.data.id),
+            navigate("/map"),
+            console.log(res);
+        } else {
+          localStorage.setItem("auth-token", res.data.token),
+            localStorage.setItem("isDriver", res.data.isDriver),
+            localStorage.setItem("isAdmin", res.data.isAdmin),
+            localStorage.setItem("id", res.data.id),
+            navigate("/driver"),
+            console.log(res);
+        }
       })
-      .catch((error) => { 
-        // setError(error);
-        console.log(error);
+      .catch((error) => {
+        setError(error.response.data.message);
+        console.log(error.response.data.message);
       });
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setError("");
-  //   }, 6000);
-  // }, [error]);
+  useEffect(() => {
+    setTimeout(() => {
+      setError("");
+    }, 6000);
+  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -125,7 +135,7 @@ export default function SignIn() {
               autoComplete="current-password"
               // onChange={handleChange}
             />
-            {/* <span>{error}</span> */}
+            <Box fontStyle={{ color: "red", fontSize: "0.8em" }}>{error}</Box>
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

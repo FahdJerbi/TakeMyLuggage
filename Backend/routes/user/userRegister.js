@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 // **********************************      Register      **********************
 module.exports = async (req, res) => {
   try {
-    let { firstName, lastName, email, password, isUser, isDriver } = req.body;
+    let { firstName, lastName, email, password, role } = req.body;
 
     //  -----------------------------------------------------
     // check if User is registering with an old email
@@ -43,22 +43,21 @@ module.exports = async (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     // -----------------------------------------------------
-    // create new user
+
     const user = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      isUser,
+      isUser: true,
     });
 
-    // create new driver
     const driver = new Driver({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      isDriver,
+      isDriver: true,
     });
 
     // -----------------------------------------------------
@@ -70,30 +69,16 @@ module.exports = async (req, res) => {
     let newDriver;
     // = await driver.save();
 
-    // check if client is registered as User or Driver
-    // {
-    //   isUser ? newUSer : newDriver;
-    // }
-
-    // if (isUser) {
-    //   newUSer = await user.save();
-    // } else if (isDriver) {
-    //   newDriver = await driver.save();
-    // }
-
     {
-      isUser
+      role == 1
         ? (newUSer = await user.save())
         : (newDriver = await driver.save());
     }
 
     // -----------------------------------------------------
-    // test if user or driver:
-
     // send finale respond as user
     res.status(200).json({
       message: "Account created successfully",
-      // newUSer,
     });
   } catch (error) {
     if (error) throw error;

@@ -30,7 +30,7 @@ const OrderSchema = new Schema(
     // // assign the driver
     driverId: {
       type: Schema.Types.ObjectId,
-      required: true,
+      // required: true,
     },
     userId: {
       type: Schema.Types.ObjectId,

@@ -46,31 +46,30 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // ----------------------------------
+  // get role inputs
+  const [checkRole, setcheckRole] = useState();
+  // ----------------------------------
+
   // track input changes
   const handleChange = (e) => {
     setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
     console.log(userInputs);
   };
 
+  // send request inputs
   const handleSubmit = async () => {
     await axios
       .post("/api/register", userInputs)
       .then((res) => {
         navigate("/login");
+        console.log(res.data.message);
       })
       .catch((error) => {
-        setError(error.response.data.error);
+        setError(error.response.data.message);
+        console.log(error.response.data.message);
       });
   };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //   });
-  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -144,28 +143,22 @@ export default function SignUp() {
 
               <Grid item xs={12}>
                 <TextField
+                  defaultValue=""
                   required
                   fullWidth
                   id="outlined-select-currency"
                   select
                   label="Role"
-                  name="Role"
-                  // value={currency}
-                  // onChange={handleChange}
+                  name="role"
+                  value={checkRole}
+                  onChange={handleChange}
                   placeholder="Please select your role !"
                 >
-                  <MenuItem value={(isUser = true)}>User</MenuItem>
-                  <MenuItem value={(isDriver = true)}>Driver</MenuItem>
+                  <MenuItem value={1}>User</MenuItem>
+                  <MenuItem value={2}>Driver</MenuItem>
                 </TextField>
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
+              <Grid item xs={12}></Grid>
             </Grid>
             <Button
               type="button"
