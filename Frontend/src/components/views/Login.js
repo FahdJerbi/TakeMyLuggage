@@ -60,7 +60,6 @@ export default function SignIn() {
         userInputs
         // { email: "sawssen@gmail.com", password: "123456Sawssen." }
       )
-      // add new comment 
       .then((res) => {
         if (res.data.isUser) {
           localStorage.setItem("auth-token", res.data.token),

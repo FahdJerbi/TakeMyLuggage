@@ -22,7 +22,7 @@ const AdminMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {/* leaflet routing machine component */}
-        {/* <RoutingMachine /> */}
+        <AdminRoutingMachine />
       </MapContainer>
     </div>
   );

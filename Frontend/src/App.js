@@ -5,6 +5,7 @@ import { Routes, Route, Link, Switch } from "react-router-dom";
 import "./styles.css";
 import Layout from "./components/views/Layout";
 import AdminMap from "./components/admin/AdminMap";
+import Dashboard from "./components/admin/Dashboard";
 import UserPrivateRoute from "./components/routes/UserPrivateRoute";
 import DriverMap from "./components/driver/DriverMap";
 import DriverPrivateRoute from "./components/routes/DriverPrivateRoute";
@@ -39,8 +40,8 @@ export default function App() {
             }
           />
 
-          {/* create a private route for Admin map */}
-          <Route path="admin" element={<AdminMap />} />
+          {/*  Admin Dashboard */}
+          <Route path="admin" element={<Dashboard />} />
         </Route>
       </Routes>
     </div>
