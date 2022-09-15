@@ -10,39 +10,53 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import { Link } from "react-router-dom";
 
 export const mainListItems = (
   <React.Fragment>
+    {/* ----------------------------------------------     Dashboard   ------------------------ */}
+    {/* <Link to="admin" style={{ textDecoration: "none" }}> */}
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
+    {/* </Link> */}
+
+    {/* ----------------------------------------------     Orders   ------------------------ */}
     <ListItemButton>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Orders" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Users" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LocalShippingIcon />
-      </ListItemIcon>
-      <ListItemText primary="Drivers" />
-    </ListItemButton>
-    <ListItemButton>
+    {/* ----------------------------------------------     Users   ------------------------ */}
+    <Link to="users" style={{ textDecoration: "none" }}>
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Users" />
+      </ListItemButton>
+    </Link>
+
+    {/* ----------------------------------------------     Drivers   ------------------------ */}
+    <Link to="drivers" style={{ textDecoration: "none" }}>
+      <ListItemButton>
+        <ListItemIcon>
+          <LocalShippingIcon />
+        </ListItemIcon>
+        <ListItemText primary="Drivers" />
+      </ListItemButton>
+    </Link>
+
+    {/* <ListItemButton>
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Integrations" />
-    </ListItemButton>
+    </ListItemButton> */}
   </React.Fragment>
 );
 

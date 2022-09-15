@@ -9,6 +9,8 @@ import Dashboard from "./components/admin/Dashboard";
 import UserPrivateRoute from "./components/routes/UserPrivateRoute";
 import DriverMap from "./components/driver/DriverMap";
 import DriverPrivateRoute from "./components/routes/DriverPrivateRoute";
+import Users from "./components/admin/Users";
+import Drivers from "./components/admin/Drivers";
 
 export default function App() {
   return (
@@ -41,7 +43,10 @@ export default function App() {
           />
 
           {/*  Admin Dashboard */}
-          <Route path="admin" element={<Dashboard />} />
+          <Route path="admin" element={<Dashboard />}>
+            <Route path="users" element={<Users />} />
+            <Route path="drivers" element={<Drivers />} />
+          </Route>
         </Route>
       </Routes>
     </div>
