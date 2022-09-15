@@ -13,7 +13,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { Link } from "react-router-dom";
 
 export const mainListItems = (
-  <React.Fragment>
+  <div style={{ border: "2px red solid" }}>
     {/* ----------------------------------------------     Dashboard   ------------------------ */}
     {/* <Link to="admin" style={{ textDecoration: "none" }}> */}
     <ListItemButton>
@@ -57,7 +57,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Integrations" />
     </ListItemButton> */}
-  </React.Fragment>
+  </div>
 );
 
 // ------------------------------------------------------------------------

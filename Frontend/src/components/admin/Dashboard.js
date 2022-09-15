@@ -6,7 +6,10 @@ function Dashboard() {
   return (
     <div>
       <DashboardSideBar />
-      <Outlet />
+      <div style={{ border: "2px red solid", marginTop: "70px" }}>
+        {" "}
+        <Outlet />
+      </div>
     </div>
   );
 }
