@@ -8,7 +8,7 @@ function DashboardLayout() {
       <DashboardSideBar />
       <div
         style={{
-          border: "2px red solid",
+          border: "0.5px grey solid",
           marginTop: "70px",
           width: "82%",
           marginLeft: "240px",

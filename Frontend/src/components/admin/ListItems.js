@@ -3,6 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
+import Divider from "@mui/material/Divider";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
@@ -13,7 +14,9 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { Link } from "react-router-dom";
 
 export const mainListItems = (
-  <div style={{ border: "2px red solid" }}>
+  <div
+  // style={{ border: "1px gray solid" }}
+  >
     {/* ----------------------------------------------     Dashboard   ------------------------ */}
     <Link to="../admin" style={{ textDecoration: "none" }}>
       <ListItemButton>
@@ -24,15 +27,8 @@ export const mainListItems = (
       </ListItemButton>
     </Link>
 
-    {/* ----------------------------------------------     Orders   ------------------------ */}
-    <Link to="orders" style={{ textDecoration: "none" }}>
-      <ListItemButton>
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Orders" />
-      </ListItemButton>
-    </Link>
+    <Divider />
+
     {/* ----------------------------------------------     Users   ------------------------ */}
     <Link to="users" style={{ textDecoration: "none" }}>
       <ListItemButton>
@@ -50,6 +46,18 @@ export const mainListItems = (
           <LocalShippingIcon />
         </ListItemIcon>
         <ListItemText primary="Drivers" />
+      </ListItemButton>
+    </Link>
+
+    <Divider />
+
+    {/* ----------------------------------------------     Orders   ------------------------ */}
+    <Link to="orders" style={{ textDecoration: "none" }}>
+      <ListItemButton>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Orders" />
       </ListItemButton>
     </Link>
 

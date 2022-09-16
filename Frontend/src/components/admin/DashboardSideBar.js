@@ -10,20 +10,14 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "./ListItems";
 import UsersList from "./UsersList";
 import Drivers from "./Drivers";
-// import Chart from "./Chart";
-// import Deposits from "./Deposits";
-// import Orders from "./Orders";
+import { Button } from "@mui/material";
 
 // ---------------------    MUI CSS    -------------------
 function Copyright(props) {
@@ -46,23 +40,23 @@ function Copyright(props) {
 
 const drawerWidth = 240;
 
-// const AppBar = styled(MuiAppBar, {
-//   shouldForwardProp: (prop) => prop !== "open",
-// })(({ theme, open }) => ({
-//   zIndex: theme.zIndex.drawer + 1,
-//   transition: theme.transitions.create(["width", "margin"], {
-//     easing: theme.transitions.easing.sharp,
-//     duration: theme.transitions.duration.leavingScreen,
-//   }),
-//   ...(open && {
-//     marginLeft: drawerWidth,
-//     width: `calc(100% - ${drawerWidth}px)`,
-//     transition: theme.transitions.create(["width", "margin"], {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//   }),
-// }));
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
 
 // const Drawer = styled(MuiDrawer, {
 //   shouldForwardProp: (prop) => prop !== "open",
@@ -107,9 +101,9 @@ export default function DashboardSideBar() {
 
         {/* <AppBar position="absolute" open={open}>
           <Toolbar
-            sx={{
-              pr: "24px", // keep right padding when drawer closed
-            }}
+          // sx={{
+          //   pr: "24px", // keep right padding when drawer closed
+          // }}
           >
             <IconButton
               edge="start"
@@ -130,7 +124,7 @@ export default function DashboardSideBar() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              TakeMyLuggage
+              <Button>TakeMyLuggage</Button>
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -168,11 +162,7 @@ export default function DashboardSideBar() {
             </IconButton>
           </Toolbar> */}
           <Divider />
-          <List component="nav">
-            {mainListItems}
-            {/* <Divider sx={{ my: 1 }} /> */}
-            {/* {secondaryListItems} */}
-          </List>
+          <List component="nav">{mainListItems}</List>
         </Drawer>
 
         {/* *************************************************** */}

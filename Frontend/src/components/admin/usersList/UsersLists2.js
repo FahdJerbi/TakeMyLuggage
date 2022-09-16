@@ -15,12 +15,12 @@ const columns = [
     type: "string",
     width: 300,
   },
-  {
-    field: "status",
-    headerName: "Status",
-    type: "string",
-    width: 200,
-  },
+  //   {
+  //     field: "status",
+  //     headerName: "Status",
+  //     type: "string",
+  //     width: 200,
+  //   },
   {
     field: "actions",
     headerName: "Actions",
@@ -43,27 +43,27 @@ const rows = [
   {
     id: 1,
     user: "Jon Snow",
-    status: "Available",
+    // status: "Available",
     email: "Jon@gmail.com",
     actions: "delete/update",
   },
   {
     id: 2,
     user: "Cersei Lannister",
-    status: "Unavailable",
+    // status: "Unavailable",
     email: "cersei@gmail.com",
     actions: "delete/update",
   },
   {
     id: 3,
     user: "Cersei Lannister",
-    status: "Unavailable",
+    // status: "Unavailable",
     email: "cersei@gmail.com",
     actions: "delete/update",
   },
 ];
 
-export default function DriversList() {
+export default function UsersList() {
   return (
     <div style={{ height: 590, width: "100%" }}>
       <DataGrid

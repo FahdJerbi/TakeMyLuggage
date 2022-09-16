@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   let user = localStorage.getItem("isUser");
   let driver = localStorage.getItem("isDriver");
+  let admin = localStorage.getItem("isAdmin");
   let token = localStorage.getItem("auth-token");
 
   let userRole = user || driver;
