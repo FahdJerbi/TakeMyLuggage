@@ -1,17 +1,30 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutline from "@mui/icons-material/DeleteOutline";
+import axios from "axios";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
-  {
-    field: "user",
-    headerName: "User",
-    width: 300,
-  },
+  // {
+  //   field: "user",
+  //   headerName: "User",
+  //   width: 300,
+  // },
   {
     field: "email",
     headerName: "Email",
+    type: "string",
+    width: 250,
+  },
+  {
+    field: "name",
+    headerName: "Name",
+    type: "string",
+    width: 230,
+  },
+  {
+    field: "phone",
+    headerName: "Phone",
     type: "string",
     width: 300,
   },
@@ -64,13 +77,25 @@ const rows = [
 ];
 
 export default function UsersList() {
+  const [usersInfo, setUsersInfo] = React.useState([]);
+
+  console.log(usersInfo);
+
+  React.useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((res) => setUsersInfo(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div style={{ height: 590, width: "100%" }}>
+      <div></div>
       <DataGrid
-        rows={rows}
+        rows={usersInfo}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
         checkboxSelection
       />
     </div>

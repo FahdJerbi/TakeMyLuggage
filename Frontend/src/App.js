@@ -9,10 +9,10 @@ import DashboardLayout from "./components/admin/DashboardLayout";
 import UserPrivateRoute from "./components/routes/UserPrivateRoute";
 import DriverMap from "./components/driver/DriverMap";
 import DriverPrivateRoute from "./components/routes/DriverPrivateRoute";
-import Users from "./components/admin/Users";
-import Drivers from "./components/admin/Drivers";
 import AdminPrivateRoute from "./components/routes/AdminPrivateRoute";
 import Dashboard from "./components/admin/Dashboard";
+import Users from "./components/admin/Users";
+import Drivers from "./components/admin/driversList/Drivers";
 import Orders from "./components/admin/Orders";
 
 export default function App() {

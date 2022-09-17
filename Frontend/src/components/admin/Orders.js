@@ -1,11 +1,3 @@
-// import React from "react";
-
-// function Orders() {
-//   return <div>Orders component !!</div>;
-// }
-
-// export default Orders;
-// ---------------------------------
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutline from "@mui/icons-material/DeleteOutline";
