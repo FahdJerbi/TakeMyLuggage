@@ -90,7 +90,9 @@ export default function UsersList() {
 
   return (
     <div style={{ height: 590, width: "100%" }}>
-      <div></div>
+      <div>
+        <h3>Search bar should be here !</h3>
+      </div>
       <DataGrid
         rows={usersInfo}
         columns={columns}

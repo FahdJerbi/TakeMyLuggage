@@ -15,8 +15,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "./ListItems";
-import UsersList from "./UsersList";
-import Drivers from "./Drivers";
+// import UsersList from "./UsersList";
+// import Drivers from "./driversList/Drivers";
 import { Button } from "@mui/material";
 
 // ---------------------    MUI CSS    -------------------

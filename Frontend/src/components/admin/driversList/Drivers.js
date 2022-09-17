@@ -10,7 +10,7 @@ const columns = [
     headerName: "User",
     width: 300,
   },
-  {
+  { 
     field: "email",
     headerName: "Email",
     type: "string",

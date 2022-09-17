@@ -13,7 +13,7 @@ import AdminPrivateRoute from "./components/routes/AdminPrivateRoute";
 import Dashboard from "./components/admin/Dashboard";
 import Users from "./components/admin/Users";
 import Drivers from "./components/admin/driversList/Drivers";
-import Orders from "./components/admin/Orders";
+import Orders from "./components/admin/ordersList/Orders";
 
 export default function App() {
   return (
