@@ -9,7 +9,7 @@ const SECRET_TOKEN = process.env.SECRET_TOKEN;
 
 module.exports = async (req, res) => {
   try {
-    let { email, password } = req.body;
+    let { email, password, isAdmin } = req.body;
     // console.log("password:", password);
     // check if user email does exists in DB
     const checkUserLoginEmail = await User.findOne({ email });
@@ -26,20 +26,9 @@ module.exports = async (req, res) => {
     // --------------------------------------------------------
 
     // check if user password is correct
-    // const checkUserPassword = await bcrypt.compare(
-    //   password,
-    //   checkUserLoginEmail.password
-    // );
     let checkUserPassword;
 
     // check if user password is correct
-    // let checkDriverPassword = await bcrypt.compare(
-    //   password,
-    // );
-    // const checkDriverPassword = await bcrypt.compare(
-    //   password,
-    //   checkDriverLoginEmail.password
-    // );
     let checkDriverPassword;
 
     // -----------------------------  it works --------------------
@@ -61,32 +50,20 @@ module.exports = async (req, res) => {
         .status(401)
         .json({ message: "Wrong password, please try again !" });
     }
-    // ------------------------------------------------------------
-
-    // if (checkUserLoginEmail) {
-    //   checkUserPassword = await bcrypt.compare(
-    //     password,
-    //     checkUserLoginEmail.password
-    //   );
-    //   return res
-    //     .status(401)
-    //     .json({ message: "Wrong User password, please try again !" });
-    // } else if (checkDriverLoginEmail) {
-    //   checkDriverPassword = await bcrypt.compare(
-    //     password,
-    //     checkDriverLoginEmail.password
-    //   );
-    //   return res
-    //     .status(401)
-    //     .json({ message: "Wrong Driver password, please try again !" });
-    // }
 
     // --------------------------------------------------------
     // create token
     let token;
 
-    // check if user or driver then send them the token
-    if (checkUserPassword) {
+    // ------------------------------------------------------------
+    //  Check for Admin Role:
+    // const AdminU = checkUserLoginEmail.isAdmin;
+    // const AdminD = checkDriverLoginEmail.isAdmin;
+    let Admin;
+    // console.log("AdminU:", AdminU, "AdminD:", AdminD);
+
+    if (checkUserPassword && checkUserLoginEmail.isAdmin) {
+      // return Admin;
       token = jwt.sign(
         {
           id: checkUserLoginEmail._id,
@@ -100,13 +77,13 @@ module.exports = async (req, res) => {
       );
       res.status(200).header("auth-token", token).json({
         status: true,
-        message: "User logged in successfully !",
+        message: "Welcome Admin !",
         token,
         isUser: checkUserLoginEmail.isUser,
         isAdmin: checkUserLoginEmail.isAdmin,
         id: checkUserLoginEmail._id,
       });
-    } else {
+    } else if (checkDriverPassword && checkDriverLoginEmail.isAdmin) {
       token = jwt.sign(
         {
           id: checkDriverLoginEmail._id,
@@ -120,13 +97,119 @@ module.exports = async (req, res) => {
       );
       res.status(200).header("auth-token", token).json({
         status: true,
-        message: "Driver logged in successfully !",
+        message: "Welcome Admin !",
         token,
         isDriver: checkDriverLoginEmail.isDriver,
         isAdmin: checkDriverLoginEmail.isAdmin,
         id: checkDriverLoginEmail._id,
       });
+    } else {
+      if (checkUserPassword) {
+        token = jwt.sign(
+          {
+            id: checkUserLoginEmail._id,
+            password: checkUserLoginEmail.password,
+            email: checkUserLoginEmail.email,
+            isUser: checkUserLoginEmail.isUser,
+            isAdmin: checkUserLoginEmail.isAdmin,
+          },
+          SECRET_TOKEN,
+          { expiresIn: "10h" }
+        );
+        res.status(200).header("auth-token", token).json({
+          status: true,
+          message: "User logged in successfully !",
+          token,
+          isUser: checkUserLoginEmail.isUser,
+          isAdmin: checkUserLoginEmail.isAdmin,
+          id: checkUserLoginEmail._id,
+        });
+      } else if (checkDriverPassword) {
+        token = jwt.sign(
+          {
+            id: checkDriverLoginEmail._id,
+            password: checkDriverLoginEmail.password,
+            email: checkDriverLoginEmail.email,
+            isDriver: checkDriverLoginEmail.isDriver,
+            isAdmin: checkDriverLoginEmail.isAdmin,
+          },
+          SECRET_TOKEN,
+          { expiresIn: "10h" }
+        );
+        res.status(200).header("auth-token", token).json({
+          status: true,
+          message: "Driver logged in successfully !",
+          token,
+          isDriver: checkDriverLoginEmail.isDriver,
+          isAdmin: checkDriverLoginEmail.isAdmin,
+          id: checkDriverLoginEmail._id,
+        });
+      }
     }
+
+    // check if user or driver then send them the token
+    // if (Admin) {
+    //   token = jwt.sign(
+    //     {
+    //       // id: checkDriverLoginEmail._id || checkUserLoginEmail._id,
+    //       // password: checkDriverLoginEmail.password,
+    //       // email: checkDriverLoginEmail.email,
+    //       isAdmin: Admin,
+    //     },
+    //     SECRET_TOKEN,
+    //     { expiresIn: "10h" }
+    //   );
+    //   res.status(200).header("auth-token", token).json({
+    //     status: true,
+    //     message: "Welcome Admin !!",
+    //     token,
+    //     isAdmin: Admin,
+    //     // id: checkDriverLoginEmail._id,
+    //     // id: checkUserLoginEmail._id,
+    //   });
+    // }
+
+    //  if (checkUserPassword) {
+    //   token = jwt.sign(
+    //     {
+    //       id: checkUserLoginEmail._id,
+    //       password: checkUserLoginEmail.password,
+    //       email: checkUserLoginEmail.email,
+    //       isUser: checkUserLoginEmail.isUser,
+    //       isAdmin: checkUserLoginEmail.isAdmin,
+    //     },
+    //     SECRET_TOKEN,
+    //     { expiresIn: "10h" }
+    //   );
+    //   res.status(200).header("auth-token", token).json({
+    //     status: true,
+    //     message: "User logged in successfully !",
+    //     token,
+    //     isUser: checkUserLoginEmail.isUser,
+    //     isAdmin: checkUserLoginEmail.isAdmin,
+    //     id: checkUserLoginEmail._id,
+    //   });
+    // } else if (checkDriverPassword) {
+    //   token = jwt.sign(
+    //     {
+    //       id: checkDriverLoginEmail._id,
+    //       password: checkDriverLoginEmail.password,
+    //       email: checkDriverLoginEmail.email,
+    //       isDriver: checkDriverLoginEmail.isDriver,
+    //       isAdmin: checkDriverLoginEmail.isAdmin,
+    //     },
+    //     SECRET_TOKEN,
+    //     { expiresIn: "10h" }
+    //   );
+    //   res.status(200).header("auth-token", token).json({
+    //     status: true,
+    //     message: "Driver logged in successfully !",
+    //     token,
+    //     isDriver: checkDriverLoginEmail.isDriver,
+    //     isAdmin: checkDriverLoginEmail.isAdmin,
+    //     id: checkDriverLoginEmail._id,
+    //   });
+    // }
   } catch (error) {
     if (error) throw error;
     res.send(400).json({ status: false, error });

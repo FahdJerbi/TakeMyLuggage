@@ -15,8 +15,15 @@ import Divider from "@mui/material/Divider";
 import AdbIcon from "@mui/icons-material/Adb";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Link } from "react-router-dom";
 
 const AdminNavbar = () => {
+  // Admin logout
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     // <AppBar position="static">
     //   <Container maxWidth="xl">
@@ -151,8 +158,8 @@ const AdminNavbar = () => {
 
         <Box sx={{ flexGrow: 1 }} />
 
-        <AdbIcon  />
-        <Typography variant="h6" component="div" >
+        <AdbIcon />
+        <Typography variant="h6" component="div">
           TakeMyLuggage
         </Typography>
 
@@ -171,7 +178,11 @@ const AdminNavbar = () => {
           </IconButton>
         </Box>
 
-        <Button color="inherit">Logout</Button>
+        <Button color="inherit">
+          <Link to="/login" onClick={handleLogout}>
+            Logout
+          </Link>
+        </Button>
       </Toolbar>
     </AppBar>
   );

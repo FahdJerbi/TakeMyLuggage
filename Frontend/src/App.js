@@ -54,7 +54,14 @@ export default function App() {
               // </AdminPrivateRoute>
             }
           >
-            <Route index element={<Dashboard />} />
+            <Route
+              index
+              element={
+                <AdminPrivateRoute>
+                  <Dashboard />
+                </AdminPrivateRoute>
+              }
+            />
             <Route path="orders" element={<Orders />} />
             <Route path="users" element={<Users />} />
             <Route path="drivers" element={<Drivers />} />

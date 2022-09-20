@@ -75,6 +75,14 @@ export default function SignIn() {
             localStorage.setItem("id", res.data.id),
             navigate("/driver"),
             console.log(res);
+        } else if (res.data.isAdmin) {
+          localStorage.setItem("auth-token", res.data.token),
+            localStorage.setItem("isUser", res.data.isUser),
+            localStorage.setItem("isDriver", res.data.isDriver),
+            localStorage.setItem("isAdmin", res.data.isAdmin),
+            localStorage.setItem("id", res.data.id),
+            navigate("/admin"),
+            console.log(res);
         }
       })
       .catch((error) => {
