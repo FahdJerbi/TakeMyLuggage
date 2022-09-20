@@ -11,7 +11,7 @@ function DashboardLayout() {
       <div
         style={{
           border: "0.5px grey solid",
-          // marginTop: "70px",
+          marginTop: "70px",
           width: "82%",
           marginLeft: "240px",
         }}
