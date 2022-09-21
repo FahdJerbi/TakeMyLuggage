@@ -7,9 +7,6 @@ const User = require("../../models/userModel");
 // -----------------------------------------
 
 // ****************************     Order routes      *****************
-// get all the orders
-router.get("/getOrders", require("./getOrders"));
-
 // get all the order by user
 router.get("/getUserOrders/:id", require("./getUserOrders"));
 

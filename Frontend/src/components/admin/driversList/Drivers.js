@@ -2,25 +2,38 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutline from "@mui/icons-material/DeleteOutline";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllDrivers } from "../../../redux/adminSlice";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "_id", headerName: "ID", width: 250 },
   {
-    field: "user",
-    headerName: "User",
-    width: 300,
+    field: "firstName",
+    headerName: "First Name",
+    width: 100,
   },
-  { 
+  {
+    field: "lastName",
+    headerName: "Last Name",
+    width: 100,
+  },
+  {
     field: "email",
     headerName: "Email",
     type: "string",
-    width: 300,
+    width: 200,
   },
   {
-    field: "status",
-    headerName: "Status",
+    field: "isAdmin",
+    headerName: "Admin",
     type: "string",
-    width: 200,
+    width: 100,
+  },
+  {
+    field: "availability",
+    headerName: "Availability",
+    type: "string",
+    width: 100,
   },
   {
     field: "actions",
@@ -40,45 +53,20 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    user: "Jon Snow",
-    status: "Available",
-    email: "Jon@gmail.com",
-    actions: "delete/update",
-  },
-  {
-    id: 2,
-    user: "Cersei Lannister",
-    status: "Unavailable",
-    email: "cersei@gmail.com",
-    actions: "delete/update",
-  },
-  {
-    id: 3,
-    user: "Cersei Lannister",
-    status: "Unavailable",
-    email: "cersei@gmail.com",
-    actions: "delete/update",
-  },
-];
-
 export default function DriversList() {
-  const [usersInfo, setUsersInfo] = React.useState([]);
-
-  console.log(usersInfo);
+  // redux prep
+  const { drivers, loading } = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => setUsersInfo(res.data))
-      .catch((err) => console.log(err)); 
+    dispatch(getAllDrivers());
   }, []);
+
   return (
     <div style={{ height: 590, width: "100%" }}>
       <DataGrid
-        rows={usersInfo}
+        rows={drivers}
+        getRowId={(row) => row._id}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}

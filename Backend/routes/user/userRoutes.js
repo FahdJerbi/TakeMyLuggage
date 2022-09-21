@@ -9,8 +9,5 @@ router.post("/register", require("./userRegister"));
 // user login route
 router.post("/login", require("./userLogin"));
 
-// get all Users for admin
-router.get("/admin/getUsers", require("./getUsers"));
-
 // export all routers
 module.exports = router;

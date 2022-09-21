@@ -3,13 +3,19 @@ import axios from "axios";
 
 // create the getAllOrders thunk
 export const getAllOrders = createAsyncThunk("admin/getOrders", async () => {
-  const response = await axios.get("/api/getOrders");
+  const response = await axios.get("/api/admin/getOrders");
   return response.data.data;
 });
 
 // create the getAllUsers thunk
 export const getAllUsers = createAsyncThunk("admin/getUsers", async () => {
   const response = await axios.get("/api/admin/getUsers");
+  return response.data.data;
+});
+
+// create the getAllUsers thunk
+export const getAllDrivers = createAsyncThunk("admin/getDrivers", async () => {
+  const response = await axios.get("/api/admin/getDrivers");
   return response.data.data;
 });
 
@@ -23,6 +29,7 @@ export const getAllUsers = createAsyncThunk("admin/getUsers", async () => {
 const initialState = {
   orders: [],
   users: [],
+  drivers: [],
   loading: false,
 };
 
@@ -31,7 +38,7 @@ export const adminSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // getAllOrders
+    // getAllOrders thunk
     [getAllOrders.pending]: (state, action) => {
       state.loading = true;
     },
@@ -43,7 +50,7 @@ export const adminSlice = createSlice({
       state.loading = false;
     },
 
-    // getAllUsers
+    // getAllUsers thunk
     [getAllUsers.pending]: (state, action) => {
       state.loading = true;
     },
@@ -52,6 +59,18 @@ export const adminSlice = createSlice({
       state.users = action.payload;
     },
     [getAllUsers.rejected]: (state, action) => {
+      state.loading = false;
+    },
+
+    // getAllDrivers thunk
+    [getAllDrivers.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getAllDrivers.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.drivers = action.payload;
+    },
+    [getAllDrivers.rejected]: (state, action) => {
       state.loading = false;
     },
   },
