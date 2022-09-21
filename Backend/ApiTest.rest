@@ -79,3 +79,11 @@ GET http://localhost:8000/api/admin/getDrivers
 ###
 # get all Orders
 GET http://localhost:8000/api/admin/getOrders
+
+###
+# delete user
+DELETE http://localhost:8000/api/admin/deleteUser/630652de2d8d67be54c5c240
+
+###
+# delete driver
+DELETE http://localhost:8000/api/admin/deleteDriver/631b53668eb8528548163e7a

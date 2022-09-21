@@ -4,6 +4,13 @@ const router = express.Router();
 // get all Users
 router.get("/getUsers", require("./getUsers"));
 
+// delete User
+router.delete("/deleteUser/:id", require("./deleteUser"));
+
+// delete driver
+router.delete("/deleteDriver/:id", require("./deleteDriver"));
+
+
 // get all Drivers
 router.get("/getDrivers", require("./getDrivers"));
 
