@@ -9,7 +9,7 @@ export const getAllOrders = createAsyncThunk("admin/getOrders", async () => {
 
 // create the getAllUsers thunk
 export const getAllUsers = createAsyncThunk("admin/getUsers", async () => {
-  const response = await axios.get("/api/getUsers");
+  const response = await axios.get("/api/admin/getUsers");
   return response.data.data;
 });
 
@@ -44,7 +44,16 @@ export const adminSlice = createSlice({
     },
 
     // getAllUsers
-    
+    [getAllUsers.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getAllUsers.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.users = action.payload;
+    },
+    [getAllUsers.rejected]: (state, action) => {
+      state.loading = false;
+    },
   },
 });
 

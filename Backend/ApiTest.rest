@@ -67,3 +67,7 @@ GET http://localhost:8000/api/driver/getRequest/631cb42d85e7cbf68c6e603c
 ###
 # get request 
 POST http://localhost:8000/api/driver/confirmRequest
+
+###################################################       Users routes Tests       ################################
+# get all users 
+GET http://localhost:8000/api/admin/getUsers

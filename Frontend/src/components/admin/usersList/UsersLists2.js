@@ -2,38 +2,41 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutline from "@mui/icons-material/DeleteOutline";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "../../../redux/adminSlice";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  // {
-  //   field: "user",
-  //   headerName: "User",
-  //   width: 300,
-  // },
+  { field: "_id", headerName: "ID", width: 225 },
   {
     field: "email",
     headerName: "Email",
     type: "string",
-    width: 250,
+    width: 200,
   },
   {
-    field: "name",
-    headerName: "Name",
-    type: "string",
-    width: 230,
+    field: `firstName`,
+    headerName: "First Name",
+    // type: "string",
+    width: 130,
   },
   {
-    field: "phone",
-    headerName: "Phone",
-    type: "string",
-    width: 300,
+    field: `lastName`,
+    headerName: "Last Name",
+    // type: "string",
+    width: 130,
   },
-  //   {
-  //     field: "status",
-  //     headerName: "Status",
-  //     type: "string",
-  //     width: 200,
-  //   },
+  {
+    field: "isAdmin",
+    headerName: "Admin",
+    type: "string",
+    width: 150,
+  },
+  // {
+  //   field: "status",
+  //   headerName: "Status",
+  //   type: "string",
+  //   width: 200,
+  // },
   {
     field: "actions",
     headerName: "Actions",
@@ -79,11 +82,14 @@ const columns = [
 export default function UsersList() {
   const [usersInfo, setUsersInfo] = React.useState([]);
 
+  // Redux prep
+  const { users, loading } = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
+
   // console.log("usersInfo:", usersInfo);
 
-  let users;
-
   // -------------------------------    Order is working  ------------------
+
   // React.useEffect(() => {
   //   axios
   //     .get("/api/getOrders")
@@ -92,10 +98,7 @@ export default function UsersList() {
   // }, []);
 
   React.useEffect(() => {
-    axios
-      .get("/api/getOrders")
-      .then((res) => console.log(res.data.data))
-      .catch((err) => console.log(err));
+    dispatch(getAllUsers());
   }, []);
 
   return (
@@ -104,7 +107,8 @@ export default function UsersList() {
         <h3>Search bar should be here !</h3>
       </div>
       <DataGrid
-        rows={usersInfo}
+        rows={users}
+        getRowId={(row) => row._id}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
