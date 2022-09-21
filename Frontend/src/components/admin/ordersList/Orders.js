@@ -2,6 +2,8 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutline from "@mui/icons-material/DeleteOutline";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOrders } from "../../../redux/adminSlice";
 
 const columns = [
   { field: "_id", headerName: "ID", width: 70 },
@@ -11,14 +13,14 @@ const columns = [
   //   width: 300,
   // },
   {
-    field: "userId",
-    headerName: "userId",
+    field: "distance",
+    headerName: "Distance",
     // type: "number",
     width: 250,
   },
   {
-    field: "distance",
-    headerName: "distance",
+    field: "createdAt",
+    headerName: "createdAt",
     // type: "number",
     width: 230,
   },
@@ -28,12 +30,12 @@ const columns = [
   //   type: "string",
   //   width: 300,
   // },
-  //   {
-  //     field: "status",
-  //     headerName: "Status",
-  //     type: "string",
-  //     width: 200,
-  //   },
+  // {
+  //   field: "createdAt",
+  //   headerName: "Created At",
+  //   // type: "string",
+  //   width: 200,
+  // },
   // {
   //   field: "actions",
   //   headerName: "Actions",
@@ -77,9 +79,12 @@ const columns = [
 // ];
 
 export default function UsersList() {
-  const [usersInfo, setUsersInfo] = React.useState([]);
+  // const [usersInfo, setUsersInfo] = React.useState([]);
 
-  console.log(usersInfo);
+  // Redux prep
+  const { orders, loading } = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
+  // console.log(usersInfo);
 
   // React.useEffect(() => {
   //   axios
@@ -88,11 +93,16 @@ export default function UsersList() {
   //     .catch((err) => console.log(err));
   // }, []);
 
+  // React.useEffect(() => {
+  //   axios
+  //     .get("/api/getOrders")
+  //     .then((res) => setUsersInfo(res.data.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  // redux
   React.useEffect(() => {
-    axios
-      .get("/api/getOrders")
-      .then((res) => setUsersInfo(res.data.data))
-      .catch((err) => console.log(err));
+    dispatch(getAllOrders());
   }, []);
 
   return (
@@ -101,7 +111,7 @@ export default function UsersList() {
         <h3>'Order Search/filter' bar should be here !!</h3>
       </div>
       <DataGrid
-        rows={usersInfo}
+        rows={orders}
         getRowId={(row) => row._id}
         columns={columns}
         pageSize={10}
