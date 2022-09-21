@@ -52,39 +52,49 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    user: "Jon Snow",
-    // status: "Available",
-    email: "Jon@gmail.com",
-    actions: "delete/update",
-  },
-  {
-    id: 2,
-    user: "Cersei Lannister",
-    // status: "Unavailable",
-    email: "cersei@gmail.com",
-    actions: "delete/update",
-  },
-  {
-    id: 3,
-    user: "Cersei Lannister",
-    // status: "Unavailable",
-    email: "cersei@gmail.com",
-    actions: "delete/update",
-  },
-];
+// const rows = [
+//   {
+//     id: 1,
+//     user: "Jon Snow",
+//     // status: "Available",
+//     email: "Jon@gmail.com",
+//     actions: "delete/update",
+//   },
+//   {
+//     id: 2,
+//     user: "Cersei Lannister",
+//     // status: "Unavailable",
+//     email: "cersei@gmail.com",
+//     actions: "delete/update",
+//   },
+//   {
+//     id: 3,
+//     user: "Cersei Lannister",
+//     // status: "Unavailable",
+//     email: "cersei@gmail.com",
+//     actions: "delete/update",
+//   },
+// ];
 
 export default function UsersList() {
   const [usersInfo, setUsersInfo] = React.useState([]);
 
-  console.log(usersInfo);
+  // console.log("usersInfo:", usersInfo);
+
+  let users;
+
+  // -------------------------------    Order is working  ------------------
+  // React.useEffect(() => {
+  //   axios
+  //     .get("/api/getOrders")
+  //     .then((res) => console.log(res.data.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   React.useEffect(() => {
     axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => setUsersInfo(res.data))
+      .get("/api/getOrders")
+      .then((res) => console.log(res.data.data))
       .catch((err) => console.log(err));
   }, []);
 
