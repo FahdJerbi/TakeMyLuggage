@@ -34,6 +34,21 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
+// ------------------------------------   delete driver thunk   ---------------------
+export const deleteDriver = createAsyncThunk(
+  "admin/deleteDriver",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`/api/admin/deleteDriver/${id}`);
+      // console.log("thunk is working !");
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error.response);
+    }
+  }
+);
+
+// *************************************     ADMIN SLICE      *****************************
 const initialState = {
   orders: [],
   users: [],
@@ -94,6 +109,20 @@ export const adminSlice = createSlice({
       // console.log("action payload:", action);
     },
     [deleteUser.rejected]: (state, action) => {
+      state.loading = false;
+    },
+    // -------------------  deleteDriver thunk
+    [deleteDriver.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [deleteDriver.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.drivers = state.drivers.filter(
+        (driver) => driver._id !== action.payload._id
+      );
+      // console.log("action payload:", action);
+    },
+    [deleteDriver.rejected]: (state, action) => {
       state.loading = false;
     },
   },
