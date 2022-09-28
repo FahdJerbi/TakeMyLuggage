@@ -15,10 +15,15 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import "./ClientMap.css";
 
 // ----------------------------   my components ---------------
 import OrderForm from "./OrderForm";
 import OrderCard from "./OrderCard";
+import { Typography } from "@mui/material";
 // import "./styles.css";
 
 const drawerWidth = 300;
@@ -56,22 +61,65 @@ const ClientPathSelector = () => {
           width: drawerWidth,
           marginTop: "64px",
           boxSizing: "border-box",
+          backgroundColor: "#1a1d1d",
+          color: "whitesmoke",
+          // fontFamily: "Roboto Condensed, sans-serif",
         },
       }}
       variant="permanent"
       anchor="left"
     >
+      {/* ******************   Avatar  **************** */}
+      <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
+        <IconButton sx={{ p: 1 }}>
+          <Avatar
+            sx={{ width: 70, height: 70 }}
+            alt="User"
+            src="/static/images/avatar/2.jpg"
+          />
+        </IconButton>
+      </Tooltip>
+      <Typography
+        style={{
+          fontFamily: "Roboto Condensed, sans-serif",
+        }}
+        id="admin-name"
+        variant="h5"
+      >
+        My name
+      </Typography>
+      <Typography
+        id="admin-email"
+        style={{
+          fontFamily: "Roboto Condensed, sans-serif",
+          fontSize: "12px",
+          marginBottom: "10px",
+        }}
+      >
+        Admin@gmail.com
+      </Typography>
+
       {/* <Toolbar /> */}
+      <Divider style={{ marginTop: "10px", backgroundColor: "#2a3333" }} />
 
       {/* ***************************   make New Order component  *********************  */}
       {/* <OrderForm {...showApiRoute} /> */}
       <List>
         <Box className="order">
-          <ListItemButton onClick={handleClick_1}>
+          <ListItemButton
+            className="user-drawer-buttons"
+            onClick={handleClick_1}
+          >
             <ListItemIcon>
-              <AddCircleOutlineIcon />
+              <AddCircleOutlineIcon className="user-drawer-icons" />
             </ListItemIcon>
-            <ListItemText primary="Make a Delivery" />
+            <Typography style={{ fontFamily: "Roboto Condensed, sans-serif" }}>
+              Make a Delivery
+            </Typography>
+            {/* <ListItemText
+              sx={{ fontFamily: "Roboto Condensed, sans-serif" }}
+              primary="Make a Delivery"
+            /> */}
             {open1 ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open1} timeout="auto" unmountOnExit>
@@ -84,11 +132,14 @@ const ClientPathSelector = () => {
 
         <Divider />
 
-        <ListItemButton onClick={handleClick_2}>
+        <ListItemButton className="user-drawer-buttons" onClick={handleClick_2}>
           <ListItemIcon>
-            <FormatListBulletedIcon />
+            <FormatListBulletedIcon className="user-drawer-icons" />
           </ListItemIcon>
-          <ListItemText primary="my Orders" />
+          <Typography style={{ fontFamily: "Roboto Condensed, sans-serif" }}>
+            my Orders
+          </Typography>
+          {/* <ListItemText primary="my Orders" /> */}
           {open2 ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={open2} timeout="auto" unmountOnExit>

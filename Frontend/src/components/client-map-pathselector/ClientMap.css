@@ -17,3 +17,18 @@
   background-color: red;
   border-style: solid;
 } */
+
+.user-drawer-icons {
+  color: #05e6fa;
+}
+
+/* .user-drawer-buttons {
+  height: 60px;
+} */
+.user-drawer-buttons:hover {
+  /* color: #00a8b8b4; */
+  background: #202727;
+  border-bottom: 2px #05e6fa solid;
+  /* border-radius: 20px; */
+  /* box-shadow: inset 9px 9px 18px #161b1b, inset -9px -9px 18px #2a3333; */
+}

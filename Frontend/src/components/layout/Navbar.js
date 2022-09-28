@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
+import "./layout.css";
 
 const Navbar = () => {
   // let user = localStorage.getItem("isUser");
@@ -27,22 +28,34 @@ const Navbar = () => {
 
   // -------------------    Nav Changes    ------------------------
   const clientNav = (
-    <Toolbar>
-      <Tooltip sx={{ flexGrow: 2 }} title="Open settings">
+    <Toolbar className="client-navbar">
+      {/* <Tooltip sx={{ flexGrow: 2 }} title="Open settings">
         <IconButton sx={{ p: 1 }}>
           <Avatar alt="User Sharp" src="/static/images/avatar/2.jpg" />
         </IconButton>
       </Tooltip>
-      <Typography>User@gmail.com</Typography>
+      <Typography>User@gmail.com</Typography> */}
 
-      <Box sx={{ flexGrow: 1 }} />
-      <Typography variant="h6" component="div" sx={{ flexGrow: 0 }}>
+      <Typography
+        id="navbar-title"
+        variant="h6"
+        component="div"
+        sx={{ flexGrow: 0, fontFamily: "Roboto Condensed, sans-serif" }}
+      >
         TakeMyLuggage
       </Typography>
 
       <Box sx={{ flexGrow: 1 }} />
       <Button color="inherit">
-        <Link to="login" onClick={handleLogout}>
+        <Link
+          style={{
+            fontFamily: "Roboto Condensed, sans-serif",
+            textDecoration: "none",
+            color: "whitesmoke",
+          }}
+          to="login"
+          onClick={handleLogout}
+        >
           Logout
         </Link>
       </Button>
