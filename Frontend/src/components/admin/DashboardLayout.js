@@ -2,10 +2,11 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import DashboardSideBar from "./DashboardSideBar";
 import AdminNavbar from "./navbar/AdminNavbar";
+import "./Dashboard.css";
 
 function DashboardLayout() {
   return (
-    <div>
+    <div className="dashboard-outlet">
       <AdminNavbar />
       <DashboardSideBar />
       <div

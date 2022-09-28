@@ -16,7 +16,9 @@ import AdbIcon from "@mui/icons-material/Adb";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
+import "./AdminNavbar.css";
 
+// fd6f27 2f2f2f
 const AdminNavbar = () => {
   // Admin logout
   const handleLogout = () => {
@@ -148,15 +150,15 @@ const AdminNavbar = () => {
     //   </Container>
     // </AppBar>
     <AppBar position="fixed">
-      <Toolbar>
-        <Tooltip sx={{ flexGrow: 1 }} title="Open settings">
+      <Toolbar className="admin-toolbar">
+        {/* <Tooltip sx={{ flexGrow: 1 }} title="Open settings">
           <IconButton sx={{ p: 1 }}>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
           </IconButton>
         </Tooltip>
         <Typography>Admin@gmail.com</Typography>
 
-        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ flexGrow: 1 }} /> */}
 
         <AdbIcon />
         <Typography variant="h6" component="div">

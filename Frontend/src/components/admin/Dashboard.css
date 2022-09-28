@@ -1,0 +1,26 @@
+/* ---------------------      Admin sidebar      --------------------  */
+.css-1f3olwj-MuiDrawer-docked .MuiDrawer-paper {
+  background-color: #1a1d1d;
+  color: aliceblue;
+}
+
+.icons {
+  color: #05e6fa;
+}
+
+.title-buttons:hover {
+  /* color: #00a8b8b4; */
+  /* background: #202727; */
+  border-bottom: 2px #05e6fa solid;
+  /* border-radius: 20px; */
+  box-shadow: inset 9px 9px 18px #161b1b, inset -9px -9px 18px #2a3333;
+}
+/* .title-buttons {
+  border-bottom: 2px red solid;
+  box-shadow: inset 9px 9px 18px #161b1b, inset -9px -9px 18px #2a3333;
+} */
+
+/* light blue #05e6fa */
+/* #a8fe39 */
+
+/* green: #3bfdfd  */
