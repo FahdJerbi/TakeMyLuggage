@@ -66,6 +66,9 @@ export default function SignIn() {
             localStorage.setItem("isUser", res.data.isUser),
             localStorage.setItem("isAdmin", res.data.isAdmin),
             localStorage.setItem("id", res.data.id),
+            localStorage.setItem("fname", res.data.firstName),
+            localStorage.setItem("lname", res.data.lastName),
+            localStorage.setItem("mail", res.data.email),
             navigate("/map"),
             console.log(res);
         } else if (res.data.isDriver) {
@@ -73,6 +76,9 @@ export default function SignIn() {
             localStorage.setItem("isDriver", res.data.isDriver),
             localStorage.setItem("isAdmin", res.data.isAdmin),
             localStorage.setItem("id", res.data.id),
+            localStorage.setItem("fname", res.data.firstName),
+            localStorage.setItem("lname", res.data.lastName),
+            localStorage.setItem("mail", res.data.email),
             navigate("/driver"),
             console.log(res);
         } else if (res.data.isAdmin) {
@@ -81,6 +87,9 @@ export default function SignIn() {
             localStorage.setItem("isDriver", res.data.isDriver),
             localStorage.setItem("isAdmin", res.data.isAdmin),
             localStorage.setItem("id", res.data.id),
+            localStorage.setItem("fname", res.data.firstName),
+            localStorage.setItem("lname", res.data.lastName),
+            localStorage.setItem("mail", res.data.email),
             navigate("/admin"),
             console.log(res);
         }

@@ -121,7 +121,9 @@ module.exports = async (req, res) => {
           message: "User logged in successfully !",
           token,
           isUser: checkUserLoginEmail.isUser,
-          isAdmin: checkUserLoginEmail.isAdmin,
+          email: checkUserLoginEmail.email,
+          firstName: checkUserLoginEmail.firstName,
+          lastName: checkUserLoginEmail.lastName,
           id: checkUserLoginEmail._id,
         });
       } else if (checkDriverPassword) {
@@ -141,7 +143,8 @@ module.exports = async (req, res) => {
           message: "Driver logged in successfully !",
           token,
           isDriver: checkDriverLoginEmail.isDriver,
-          isAdmin: checkDriverLoginEmail.isAdmin,
+          firstName: checkDriverLoginEmail.firstName,
+          lastName: checkDriverLoginEmail.lastName,
           id: checkDriverLoginEmail._id,
         });
       }

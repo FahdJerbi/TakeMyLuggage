@@ -29,6 +29,11 @@ import { Typography } from "@mui/material";
 const drawerWidth = 300;
 
 const ClientPathSelector = () => {
+  // user infos
+  const email = localStorage.getItem("mail");
+  const fname = localStorage.getItem("fname");
+  const lname = localStorage.getItem("lname");
+
   // make a state to hold data store
   const [showApiRoute, setShowApiRoute] = useState();
   // call the state from store
@@ -86,7 +91,7 @@ const ClientPathSelector = () => {
         id="admin-name"
         variant="h5"
       >
-        My name
+        {`${fname} ${lname} `}
       </Typography>
       <Typography
         id="admin-email"
@@ -96,7 +101,7 @@ const ClientPathSelector = () => {
           marginBottom: "10px",
         }}
       >
-        Admin@gmail.com
+        {email}
       </Typography>
 
       {/* <Toolbar /> */}
