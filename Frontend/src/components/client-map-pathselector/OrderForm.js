@@ -79,7 +79,7 @@ const OrderForm = ({
         label="Test"
       />
       <TextField
-        value={end_y && end_x ? formData.EndPoint : ""}
+        value={end_y && end_x ? formData.EndPoint : ""} 
         onChange={(e) => {
           setFormData({ ...formData, [e.target.name]: e.target.value });
         }}
@@ -90,7 +90,7 @@ const OrderForm = ({
         label="Test"
       /> */}
       <TextField
-        value={formData.Distance} //te5dem
+        value={formData.Distance || ""} //te5dem
         onChange={(e) => {
           setFormData({ ...formData, [e.target.name]: e.target.value });
         }}
@@ -104,7 +104,7 @@ const OrderForm = ({
         }}
       />
       <TextField
-        value={formData.Time} //te5dem
+        value={formData.Time || ""} //te5dem
         onChange={(e) => {
           setFormData({ ...formData, [e.target.name]: e.target.value });
         }}
