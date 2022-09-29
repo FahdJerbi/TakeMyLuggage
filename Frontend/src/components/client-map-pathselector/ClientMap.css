@@ -32,3 +32,8 @@
   /* border-radius: 20px; */
   /* box-shadow: inset 9px 9px 18px #161b1b, inset -9px -9px 18px #2a3333; */
 }
+
+/* ***********    Card item css    *********** */
+.card-item:hover {
+  background: rgba(110, 0, 0, 0.808);
+}

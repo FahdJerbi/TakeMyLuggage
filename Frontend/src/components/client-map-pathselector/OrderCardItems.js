@@ -13,6 +13,7 @@ import EditLocationAltIcon from "@mui/icons-material/EditLocationAlt"; // edit l
 // -------------------------------------------------------
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import "./ClientMap.css";
 
 function OrderCardItems({ distance, time, _id }) {
   //   const [myOrders, setMyOrders] = useState([]);
@@ -35,16 +36,19 @@ function OrderCardItems({ distance, time, _id }) {
   return (
     <div>
       <Card
+        className="card-item"
+        id={_id ? "active" : ""}
         key={_id}
         sx={{
-          width: 260,
+          width: 240,
           display: "flex",
           flexDirection: "column",
           margin: "5px",
           border: "1px grey solid",
+          backgroundColor: "#202727",
         }}
       >
-        <CardHeader
+        {/* <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
               R
@@ -52,11 +56,25 @@ function OrderCardItems({ distance, time, _id }) {
           }
           title="first order"
           subheader="Pending..."
-        />
+        /> */}
         <CardContent>
-          <Typography>Distance: {distance} km </Typography>
-          <Typography>Path Time: {time} min </Typography>
-          <Typography>Driver: `Big Daddy` </Typography>
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            R
+          </Avatar>
+          <Typography
+            sx={{
+              fontFamily: "Roboto Condensed, sans-serif",
+              color: "whitesmoke",
+            }}
+          >
+            Distance: ${distance} km
+            <br />
+            Path Time: {time} min
+            <br />
+            price:
+            <br />
+            Driver: `Big Daddy`
+          </Typography>
         </CardContent>
         <CardActions disableSpacing>
           <IconButton onClick={handleDelete}>
