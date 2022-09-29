@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
+import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
@@ -57,10 +58,12 @@ function OrderCardItems({ distance, time, _id }) {
           title="first order"
           subheader="Pending..."
         /> */}
-        <CardContent>
+        <CardContent style={{ display: "flex" }}>
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
           </Avatar>
+
+          <Box sx={{ flexGrow: 1 }} />
           <Typography
             sx={{
               fontFamily: "Roboto Condensed, sans-serif",
