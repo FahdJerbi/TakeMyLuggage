@@ -37,3 +37,19 @@
 .card-item:hover {
   background: rgba(88, 0, 0, 0.808);
 }
+
+/* ***********   form inputs    ************ */
+.MuiFormLabel-root.MuiInputLabel-outlined {
+  color: whitesmoke;
+  font-family: "Roboto Condensed", "sans-serif";
+}
+
+.MuiTypography-root.MuiTypography-body1 {
+  color: whitesmoke;
+  font-family: "Roboto Condensed", "sans-serif";
+}
+
+#standard-basic {
+  color: whitesmoke;
+  font-family: "Roboto Condensed", "sans-serif";
+}

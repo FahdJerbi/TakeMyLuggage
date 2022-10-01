@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import { Toolbar } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import "./ClientMap.css";
 
 const OrderForm = ({
   start_y,
@@ -96,7 +97,12 @@ const OrderForm = ({
         }}
         name="Distance"
         placeholder="Test Data"
-        sx={{ m: 1, width: "25ch" }}
+        sx={{
+          m: 1,
+          width: "25ch",
+          // color: "#90a4ae",
+          // fontFamily: "Roboto Condensed, sans-serif",
+        }}
         id="standard-basic"
         label="Test"
         InputProps={{
