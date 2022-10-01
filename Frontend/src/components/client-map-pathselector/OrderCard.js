@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import OrderCardItems from "./OrderCardItems";
+import { useDispatch, useSelector } from "react-redux";
+import { userOrders } from "../../redux/userOrderSlice";
 // ********************************************************
 
 function OrderCard() {
+  // redux prep
+  const dispatch = useDispatch();
+  const { allOrders } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(userOrders(id));
+    console.log("dispatch:", dispatch(userOrders(id)));
+  }, []);
+
+  console.log("allOrders:", allOrders);
+
   const [myOrders, setMyOrders] = useState([]);
 
   const id = localStorage.getItem("id");
@@ -11,24 +24,24 @@ function OrderCard() {
   // console.log(id, token);
 
   // get all orders related to User using id
-  useEffect(() => {
-    axios
-      .get(`/api/getUserOrders/${id}`)
-      .then((res) => setMyOrders(res.data.UserOrders))
-      .catch((error) => {
-        // console.log(error)
-        if (error.response) {
-          //do something
-          console.log(error.response);
-        } else if (error.request) {
-          //do something else
-          console.log(error.request);
-        } else if (error.message) {
-          //do something other than the other two
-          console.log(error.message);
-        }
-      });
-  }, [myOrders]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/getUserOrders/${id}`)
+  //     .then((res) => setMyOrders(res.data.UserOrders))
+  //     .catch((error) => {
+  //       // console.log(error)
+  //       if (error.response) {
+  //         //do something
+  //         console.log(error.response);
+  //       } else if (error.request) {
+  //         //do something else
+  //         console.log(error.request);
+  //       } else if (error.message) {
+  //         //do something other than the other two
+  //         console.log(error.message);
+  //       }
+  //     });
+  // }, [myOrders]);
 
   return (
     <div>
@@ -36,8 +49,8 @@ function OrderCard() {
         return <OrderCardItems key={order._id} {...order} />;
       })} */}
 
-      {myOrders.length >= 1 ? (
-        myOrders.map((order) => {
+      {allOrders.length >= 1 ? (
+        allOrders.map((order) => {
           return <OrderCardItems key={order._id} {...order} />;
         })
       ) : (
