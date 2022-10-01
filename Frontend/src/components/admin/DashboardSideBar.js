@@ -14,7 +14,9 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./ListItems";
+// import { mainListItems, secondaryListItems } from "./ListItems";
+import ListItems from "./ListItems";
+
 // import UsersList from "./UsersList";
 // import Drivers from "./driversList/Drivers";
 
@@ -117,7 +119,8 @@ export default function DashboardSideBar() {
       >
         <Divider />
         <List className="admin-list" component="nav">
-          {mainListItems}
+          {/* {mainListItems} */}
+          <ListItems />
         </List>
       </Drawer>
     </Box>

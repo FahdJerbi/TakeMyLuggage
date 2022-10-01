@@ -49,11 +49,15 @@ const ClientPathSelector = () => {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
 
-  const handleClick_1 = () => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+  const handleClick_1 = (event, index) => {
     setOpen1(!open1);
+    setSelectedIndex(index);
   };
-  const handleClick_2 = () => {
+  const handleClick_2 = (event, index) => {
     setOpen2(!open2);
+    setSelectedIndex(index);
   };
   // console.log(showApiRoute);
   // *******************************************
@@ -113,7 +117,8 @@ const ClientPathSelector = () => {
         <Box className="order">
           <ListItemButton
             className="user-drawer-buttons"
-            onClick={handleClick_1}
+            selected={selectedIndex === 1}
+            onClick={(event) => handleClick_1(event, 1)}
           >
             <ListItemIcon>
               <AddCircleOutlineIcon className="user-drawer-icons" />
@@ -137,7 +142,12 @@ const ClientPathSelector = () => {
 
         <Divider />
 
-        <ListItemButton className="user-drawer-buttons" onClick={handleClick_2}>
+        <ListItemButton
+          className="user-drawer-buttons"
+          //  onClick={handleClick_2}
+          selected={selectedIndex === 2}
+          onClick={(event) => handleClick_2(event, 2)}
+        >
           <ListItemIcon>
             <FormatListBulletedIcon className="user-drawer-icons" />
           </ListItemIcon>
