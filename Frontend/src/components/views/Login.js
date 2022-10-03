@@ -15,6 +15,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // ------------------------
 
 // function to grab css from official site
@@ -45,8 +47,12 @@ export default function SignIn() {
   const [userInputs, setUserInputs] = useState({});
   const [error, setError] = useState("");
 
+  // toastify notification
+  const notify = () => toast.success("Wow so easy !");
+
   const handleChange = (e) => {
     setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
+    notify();
     // console.log(userInputs);
   };
 
@@ -98,6 +104,8 @@ export default function SignIn() {
         setError(error.response.data.message);
         console.log(error.response.data.message);
       });
+    notify();
+    console.log("notify is here !");
   };
 
   useEffect(() => {
@@ -168,6 +176,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            <ToastContainer />
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
