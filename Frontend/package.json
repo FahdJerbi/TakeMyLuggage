@@ -23,7 +23,8 @@
     "react-redux": "8.0.2",
     "react-router-dom": "6.3.0",
     "react-scripts": "4.0.0",
-    "react-toastify": "^9.0.3"
+    "react-toastify": "^9.0.3",
+    "sweetalert2": "^11.4.37"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",

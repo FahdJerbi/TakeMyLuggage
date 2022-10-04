@@ -4,10 +4,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
 import { Toolbar } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import "./ClientMap.css";
+import Swal from "sweetalert2";
 
 const OrderForm = ({
   start_y,
@@ -46,23 +48,51 @@ const OrderForm = ({
 
   // send user login inputs to server
   const handleOrder = async () => {
-    await axios
-      .post(`/api/create/${id}`, {
-        start_lat: start_y,
-        start_lng: start_x,
-        end_lat: end_y,
-        end_lng: end_x,
-        distance: pathDistance,
-        time: pathTime,
-      })
-      .then((res) => {
-        console.log("ok");
-        setResponseMsg(res.data.message);
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(error);
-      });
+    // SweetAlert confirmation popup:
+    Swal.fire({
+      title: `Your delivery will cost you ${pathDistance}$ `,
+      // text: "You won't be able to revert this!",
+      text: "Confirm delivery ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, confirm it !",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // axios
+        axios
+          .post(`/api/create/${id}`, {
+            start_lat: start_y,
+            start_lng: start_x,
+            end_lat: end_y,
+            end_lng: end_x,
+            distance: pathDistance,
+            time: pathTime,
+          })
+          .then((res) => {
+            console.log("ok");
+            setResponseMsg(res.data.message);
+          })
+          .catch((error) => {
+            console.log(error);
+            setError(error);
+          });
+        Swal.fire(
+          "Delivery Saved !",
+          "Your delivery has been added.",
+          "success"
+        );
+      }
+    });
+
+    // clear form inputs after submitting
+    setFormData({
+      StartPoint: "",
+      EndPoint: "",
+      Distance: "",
+      Time: "",
+    });
   };
 
   return (
@@ -123,6 +153,35 @@ const OrderForm = ({
           endAdornment: <InputAdornment position="end">min</InputAdornment>,
         }}
       />
+      <TextField
+        // defaultValue=""
+        // required
+        // fullWidth
+        sx={{ m: 1, width: "25ch" }}
+        id="outlined-select-currency"
+        select
+        label="Driver"
+        name="driver"
+        // value={checkRole}
+        // onChange={handleChange}
+        placeholder="Please select your role !"
+      >
+        <MenuItem
+        // value={1}
+        >
+          Driver 1
+        </MenuItem>
+        <MenuItem
+        // value={2}
+        >
+          Driver 2
+        </MenuItem>
+        <MenuItem
+        // value={2}
+        >
+          Driver 3
+        </MenuItem>
+      </TextField>
 
       {/* Order confirmation message */}
       {/* {handleOrder ? Error : responseMsg} */}

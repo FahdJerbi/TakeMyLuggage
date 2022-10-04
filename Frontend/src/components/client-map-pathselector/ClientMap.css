@@ -53,3 +53,17 @@
   color: whitesmoke;
   font-family: "Roboto Condensed", "sans-serif";
 }
+
+/* SweetAlert */
+.swal2-title {
+  font-family: "Roboto Condensed", "sans-serif";
+}
+#swal2-html-container.swal2-html-container {
+  font-family: "Roboto Condensed", "sans-serif";
+}
+.swal2-styled.swal2-confirm {
+  font-family: "Roboto Condensed", "sans-serif";
+}
+.swal2-styled.swal2-cancel {
+  font-family: "Roboto Condensed", "sans-serif";
+}
