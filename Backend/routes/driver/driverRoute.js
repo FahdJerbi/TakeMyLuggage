@@ -8,4 +8,7 @@ router.get("/getRequest/:id", require("./getRequest"));
 // accept order request
 router.post("/confirmRequest", require("./confirmRequest"));
 
+// change availability:
+router.put("/availability/:id", require("./driverAvailability"));
+
 module.exports = router;

@@ -21,6 +21,8 @@ const DriverSideBar = () => {
           width: drawerWidth,
           marginTop: "64px",
           boxSizing: "border-box",
+          backgroundColor: "#1a1d1d",
+          color: "whitesmoke",
         },
       }}
       variant="permanent"

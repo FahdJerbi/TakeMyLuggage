@@ -68,6 +68,16 @@ GET http://localhost:8000/api/driver/getRequest/631cb42d85e7cbf68c6e603c
 # get request 
 POST http://localhost:8000/api/driver/confirmRequest
 
+###
+# driver Availabiity 
+PUT http://localhost:8000/api/driver/availability/63357d6f7def2b51fd6fd7fb
+Content-Type: application/json
+
+{
+  "availability": true
+}
+### 63357d6f7def2b51fd6fd7fb
+
 ###################################################       Users routes Tests       ################################
 # get all users 
 GET http://localhost:8000/api/admin/getUsers

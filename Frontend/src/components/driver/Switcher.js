@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import * as React from "react";
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
@@ -6,7 +6,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-// -----------------------------------------------------
+import "./DriverMap.css";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { checkAvailability } from "../../redux/driverSlice";
 
 // ***************************************
 
@@ -46,11 +49,47 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
 
 // **********************************   Actual component  **********************
 function Switcher() {
+  // switcher local state
+  const [available, setAvailable] = useState(false);
+
+  // redux prep
+  // const { driverAvailability } = useSelector((state) => state.driver);
+  // const dispatch = useDispatch();
+
+  const id = localStorage.getItem("id");
+
+  console.log("available state:", available);
+
+  // console.log("driverAvailability:", driverAvailability);
+
+  // *****************************     Axios  (Working)   ***************************
+
+  const handleDriver = async () => {
+    await axios
+      .put(`/api/driver/availability/${id}`, { availability: available })
+      .then((res) => console.log(res.data.data))
+      .catch((err) => console.log(err));
+    console.log("axios is working !");
+  };
+
+  // ***********************************************************************
   return (
     <div>
       <FormGroup>
         <FormControlLabel
-          control={<Android12Switch defaultChecked />}
+          control={
+            <Android12Switch
+              name="availability"
+              onChange={(e) => {
+                setAvailable((e.target.available = !available));
+              }}
+              onClick={() => handleDriver()} // it's working
+              // onClick={() =>
+              //   dispatch(checkAvailability())
+              // }
+              // defaultChecked
+            />
+          }
           label="Availability"
         />
 

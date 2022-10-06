@@ -19,3 +19,37 @@
   background-color: red;
   border-style: solid;
 } */
+
+/* font-family: "Roboto Condensed", "sans-serif"; */
+/* #switcher {
+  font-family: "Roboto Condensed", "sans-serif";
+  color: #1a1d1d;
+  background-color: aqua;
+} */
+
+/* .MuiTypography-root.MuiTypography-body1 {
+  color: black;
+  font-family: "Roboto Condensed", "sans-serif";
+} */
+
+/* .MuiButtonBase-root
+  MuiSwitch-switchBase
+  MuiSwitch-colorPrimary
+  PrivateSwitchBase-root
+  MuiSwitch-switchBase
+  MuiSwitch-colorPrimary
+  Mui-checked
+  css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase {
+} */
+
+/* MuiSwitch-track css-1yjjitx-MuiSwitch-track */
+
+/* .MuiButtonBase-root.Mui-checked.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase
+  .MuiSwitch-track {
+  background-color: red;
+} */
+
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked
+  .MuiSwitch-track {
+  background-color: red;
+}
