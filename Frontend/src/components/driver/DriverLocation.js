@@ -50,5 +50,5 @@ const createRoutingMachine = () => {
   return myRoute;
 };
 
-const DriverRoutingMachine = createControlComponent(createRoutingMachine);
-export default DriverRoutingMachine;
+const DriverLocation = createControlComponent(createRoutingMachine);
+export default DriverLocation;

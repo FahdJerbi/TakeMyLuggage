@@ -4,6 +4,7 @@ import DriverRoutingMachine from "./DriverRoutingMachine";
 import DriverSideBar from "./DriverSideBar";
 import "./DriverMap.css";
 import SwitcherContainer from "./SwitcherContainer";
+import DriverLocation from "./DriverLocation";
 
 const DriverMap = () => {
   const Tunisie = [33.88, 9.53];
@@ -32,7 +33,8 @@ const DriverMap = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {/* leaflet routing machine component */}
-          <DriverRoutingMachine />
+          {/* <DriverRoutingMachine /> */}
+          <DriverLocation />
         </MapContainer>
       </div>
     </div>
