@@ -15,17 +15,36 @@ const createRoutingMachine = () => {
   const userPathsState = useSelector((state) => state.routingMachineData);
   const dispatch = useDispatch();
 
+  // // ---------------------  Get Driver position --------------------------
+  // const [position, setPosition] = useState(null);
+
+  // useEffect(() => {
+  //   map.locate().on("locationfound", function (e) {
+  //     setPosition(e.latlng);
+  //     map.flyTo(e.latlng, map.getZoom());
+  //     //  const radius = e.accuracy;
+  //     // const circle = L.circle(e.latlng, radius);
+  //     const userMarker = L.marker(e.latlng)
+  //       .bindPopup("You are here User !")
+  //       .openPopup();
+  //     // circle.addTo(map);
+  //     userMarker.addTo(map);
+  //   });
+  // }, [map]);
+
+  // console.log(position);
+
   // Routing machine control
   const myRoute = L.Routing.control({
     waypoints: [],
     lineOptions: {
-      styles: [{ color: "red", opacity: 1, weight: 2 }]
+      styles: [{ color: "red", opacity: 1, weight: 2 }],
     },
     geocoder: L.Control.Geocoder.nominatim(),
     addWaypoints: false,
     routeWhileDragging: true,
     draggableWaypoints: true,
-    fitSelectedRoutes: true
+    fitSelectedRoutes: true,
   });
 
   // retrieve route data when 'routesfound' event is fired: start (x,y), end (x,y), distance(m) and time(min)
@@ -57,7 +76,7 @@ const createRoutingMachine = () => {
         end_y: end_y,
         end_x: end_x,
         pathDistance: distance,
-        pathTime: time
+        pathTime: time,
       })
     );
   });

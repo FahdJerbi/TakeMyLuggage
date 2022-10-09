@@ -58,7 +58,7 @@ function Switcher() {
 
   const id = localStorage.getItem("id");
 
-  console.log("available state:", available);
+  // console.log("available state:", available);
 
   // console.log("driverAvailability:", driverAvailability);
 

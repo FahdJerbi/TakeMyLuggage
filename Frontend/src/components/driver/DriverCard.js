@@ -14,23 +14,23 @@ function DriverCard() {
   useEffect(() => {
     axios
       .get(`/api/driver/getRequest/${id}`)
-      .then((res) => setUserRequests(res.data.UserRequest))
-      .catch((error) => {
-        // console.log(error)
-        if (error.response) {
-          //do something
-          console.log(error.response);
-        } else if (error.request) {
-          //do something else
-          console.log(error.request);
-        } else if (error.message) {
-          //do something other than the other two
-          console.log(error.message);
-        }
-      });
+      .then((res) => setUserRequests(res.data.UserRequest));
+    // .catch((error) => {
+    //   // console.log(error)
+    //   if (error.response) {
+    //     //do something
+    //     console.log(error.response);
+    //   } else if (error.request) {
+    //     //do something else
+    //     console.log(error.request);
+    //   } else if (error.message) {
+    //     //do something other than the other two
+    //     console.log(error.message);
+    //   }
+    // });
   }, []);
 
-  console.log(userRequests);
+  // console.log(userRequests);
 
   return (
     <div>

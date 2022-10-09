@@ -11,4 +11,7 @@ router.post("/confirmRequest", require("./confirmRequest"));
 // change availability:
 router.put("/availability/:id", require("./driverAvailability"));
 
+// driver location:
+router.put("/location/:id", require("./driverLocation"));
+
 module.exports = router;
