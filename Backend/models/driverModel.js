@@ -37,16 +37,17 @@ const DriverSchema = new Schema(
       type: Schema.Types.ObjectId,
       // required: true,
     },
-    lat: {
-      type: Number,
-    },
-    lng: {
-      type: Number,
-    },
-    location: {
-      type: [Number],
-      // default: undefined,
-    },
+    // lat: {
+    //   type: Number,
+    // },
+    // lng: {
+    //   type: Number,
+    // },
+    location: [
+      {
+        type: Schema.Types.Mixed,
+      },
+    ],
     // userId: {
     //     type: Schema.Types.ObjectId,
     //     required: true,

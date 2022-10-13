@@ -32,10 +32,10 @@ import React, { useEffect, useState } from "react";
 import L from "leaflet";
 import { Marker, Popup, useMap } from "react-leaflet";
 import { createControlComponent } from "@react-leaflet/core";
-import "leaflet-routing-machine";
-import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
-import "leaflet-control-geocoder/dist/Control.Geocoder.js";
-import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+// import "leaflet-routing-machine";
+// import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+// import "leaflet-control-geocoder/dist/Control.Geocoder.js";
+// import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getActiveDrivers } from "../../redux/userOrderSlice";
@@ -49,7 +49,7 @@ const createRoutingMachine = () => {
   const [drivers, setDrivers] = useState();
 
   // Leaflet Hook
-  const map = useMap();
+  const Map = useMap();
 
   //   redux
   const { activeDrivers } = useSelector((state) => state.user);
@@ -59,18 +59,31 @@ const createRoutingMachine = () => {
     // dispatch(getActiveDrivers());
 
     axios.get("/api/admin/getDrivers").then((res) => setDrivers(res.data.data));
-    console.log("activeDrivers:", drivers);
-  }, [map]);
+  }, [Map]);
+
+  console.log("Drivers:", drivers);
+
   // **************************** redux: end  *****
 
-  const DrMarker = (
-    <Marker
-      // key={driver._id}
-      position={[33.88, 9.53]}
-    >
-      <Popup> Fahd </Popup>
-    </Marker>
-  );
+  // const DrMarker = drivers.map((driver) => {
+  //   return (
+  //     <Marker
+  //       // key={driver._id}
+  //       position={[33.88, 9.53]}
+  //     >
+  //       <Popup> driver.firstName </Popup>
+  //     </Marker>
+  //   );
+  // });
+
+  // const DrMarker = (
+  //   <Marker
+  //     // key={driver._id}
+  //     position={[33.88, 9.53]}
+  //   >
+  //     <Popup> Fahd </Popup>
+  //   </Marker>
+  // );
 
   // activeDrivers.map((driver) => {
   //   <Marker key={driver._id} position={[33.88, 9.53]}>
@@ -89,7 +102,18 @@ const createRoutingMachine = () => {
   //   });
   // });
 
-  return DrMarker;
+  return (
+    <div>
+      {drivers?.map((d) => {
+        // console.log(d);
+        return (
+          <Marker key={d._id} position={[33.88, 9.53]}>
+            <Popup> {d.firstName} </Popup>
+          </Marker>
+        );
+      })}
+    </div>
+  );
 
   // <Marker
   //   // key={driver._id}

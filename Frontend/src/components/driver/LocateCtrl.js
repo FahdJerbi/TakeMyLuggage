@@ -90,14 +90,18 @@ const createRoutingMachine = () => {
   const pos = [lat, lng];
   console.log(pos);
 
+  // const pos_2 = if( position != null  ){
+  //   return position
+  // }
+
   useEffect(() => {
     axios
-      .put(`/api/driver/location/${id}`, { lat, lng })
+      .put(`/api/driver/location/${id}`, { location: pos })
       .then((res) => console.log(res.data.data))
       .catch((err) => console.log(err));
-  }, [position]); // dependency should be map or position ??
+  }, [position != null]); // dependency should be map or position ??
 
-  let driverLc = L.easyButton("fa-map-marker", () => {
+  let driverLc = L.easyButton("fa-map-marker", async () => {
     map.locate().on("locationfound", function (e) {
       setPosition(e.latlng);
       setLat(e.latlng.lat);
