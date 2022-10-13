@@ -11,11 +11,23 @@ export const userOrders = createAsyncThunk("user/getUserOrders", async (id) => {
   return response.data.UserOrders;
 });
 
+// ------------------------------------   drivers Position thunk   ---------------------
+// create the getAllUsers thunk
+export const getActiveDrivers = createAsyncThunk(
+  "user/activeDrivers",
+  async () => {
+    const response = await axios.get("/api/admin/getDrivers");
+    return response.data.data;
+  }
+);
+
 // default state
 const initialState = {
   userOrderList: [],
   createOrderList: [],
   allOrders: [],
+  driversPosition: [],
+  activeDrivers: [],
   loading: false,
 };
 
@@ -40,6 +52,18 @@ const OrderSlice = createSlice({
       state.allOrders = action.payload;
     },
     [userOrders.rejected]: (state, action) => {
+      state.loading = false;
+    },
+
+    // --------------- getDriversPosition thunk ------------------
+    [getActiveDrivers.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getActiveDrivers.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.activeDrivers = action.payload;
+    },
+    [getActiveDrivers.rejected]: (state, action) => {
       state.loading = false;
     },
   },

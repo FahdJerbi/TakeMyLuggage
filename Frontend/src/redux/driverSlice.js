@@ -29,6 +29,15 @@ export const checkAvailability = createAsyncThunk(
     }
   }
 );
+// export const checkAvailability = createAsyncThunk(
+//   "driver/availability",
+//   async (id, LatLng) => {
+//     const response = await axios.put(`/api/driver/availability/${id}`, LatLng);
+//     console.log('"Availability" thunk is working !');
+//     console.log(response.data.data);
+//     return response;
+//   }
+// );
 
 // get Driver Location thunk   ******************************************
 // export const getDriverLocation = createAsyncThunk(
@@ -86,7 +95,7 @@ export const driverSlice = createSlice({
     [getDriverLocation.fulfilled]: (state, action) => {
       state.loading = false;
       state.driverLocation = action.payload;
-      // console.log(action.payload);
+      console.log(action);
     },
     [getDriverLocation.rejected]: (state, action) => {
       state.loading = false;

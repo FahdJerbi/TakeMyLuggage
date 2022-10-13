@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import { Toolbar } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+import { getActiveDrivers } from "../../redux/userOrderSlice";
 import axios from "axios";
 import "./ClientMap.css";
 import Swal from "sweetalert2";
@@ -21,6 +22,33 @@ const OrderForm = ({
 }) => {
   // console.log(start_y, end_y, pathDistance);
 
+  // **************************   Get Active Drivers: Start  *******************
+
+  // 1- redux prep
+  // 2- get the drivers
+  // 3- map through drivers in the from below
+
+  // 1- redux prep:
+  const { activeDrivers } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  // const
+
+  // 2- get the drivers:
+  useEffect(() => {
+    dispatch(getActiveDrivers());
+  }, []);
+
+  // 3- map through drivers in the from below
+
+  // 4- get driver id
+  // const [driverId, setDriverId] = useState({
+  //   Driver: "",
+  // });
+
+  // console.log("driverID:", driverId);
+
+  // **************************   Get Active Drivers : End  *******************
+
   // store props values in state
   const [formData, setFormData] = useState({
     StartPoint: "",
@@ -28,6 +56,8 @@ const OrderForm = ({
     Distance: "",
     Time: "",
   });
+
+  // console.log(formData);
 
   const [responseMsg, setResponseMsg] = useState("");
   const [error, setError] = useState("");
@@ -69,6 +99,7 @@ const OrderForm = ({
             end_lng: end_x,
             distance: pathDistance,
             time: pathTime,
+            // driverId: driverId,
           })
           .then((res) => {
             console.log("ok");
@@ -87,12 +118,12 @@ const OrderForm = ({
     });
 
     // clear form inputs after submitting
-    setFormData({
-      StartPoint: "",
-      EndPoint: "",
-      Distance: "",
-      Time: "",
-    });
+    // setFormData({
+    //   StartPoint: "",
+    //   EndPoint: "",
+    //   Distance: "",
+    //   Time: "",
+    // });
   };
 
   return (
@@ -161,12 +192,27 @@ const OrderForm = ({
         id="outlined-select-currency"
         select
         label="Driver"
-        name="driver"
-        // value={checkRole}
+        name="Driver"
+        // value={driverId}
         // onChange={handleChange}
+        // onChange={(e) => {
+        //   // setDriverId(formData.Driver);
+        //   // setFormData({ ...formData, [e.target.name]: e.target.value });
+        //   setDriverId({ ...driverId, [e.target.name]: e.target.value });
+        // }}
         placeholder="Please select your role !"
       >
-        <MenuItem
+        {activeDrivers.map((activeDriver) => {
+          if (activeDriver.availability == true) {
+            return (
+              <MenuItem key={activeDriver._id} value={activeDriver._id || ""}>
+                {activeDriver.firstName}
+              </MenuItem>
+            );
+          }
+        })}
+
+        {/* <MenuItem
         // value={1}
         >
           Driver 1
@@ -180,7 +226,7 @@ const OrderForm = ({
         // value={2}
         >
           Driver 3
-        </MenuItem>
+        </MenuItem> */}
       </TextField>
 
       {/* Order confirmation message */}

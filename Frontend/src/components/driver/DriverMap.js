@@ -5,6 +5,7 @@ import DriverSideBar from "./DriverSideBar";
 import "./DriverMap.css";
 import SwitcherContainer from "./SwitcherContainer";
 import DriverLocation from "./DriverLocation";
+import LocateCtrl from "./LocateCtrl";
 
 const DriverMap = () => {
   const Tunisie = [33.88, 9.53];
@@ -34,7 +35,8 @@ const DriverMap = () => {
           />
           {/* leaflet routing machine component */}
           {/* <DriverRoutingMachine /> */}
-          <DriverLocation />
+          {/* <DriverLocation /> */}
+          <LocateCtrl />
         </MapContainer>
       </div>
     </div>

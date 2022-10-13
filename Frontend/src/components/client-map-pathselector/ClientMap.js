@@ -1,8 +1,9 @@
-import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import React, { useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import RoutingMachine from "./RoutingMachine";
 import ClientPathSelector from "./ClientPathSelector";
 import "./ClientMap.css";
+import DriverPosition from "./DriverPosition";
 
 const ClientMap = () => {
   const Tunisie = [33.88, 9.53];
@@ -20,6 +21,8 @@ const ClientMap = () => {
         />
         {/* leaflet routing machine component */}
         <RoutingMachine />
+
+        <DriverPosition />
       </MapContainer>
     </div>
   );

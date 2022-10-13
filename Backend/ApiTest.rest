@@ -82,8 +82,8 @@ PUT http://localhost:8000/api/driver/location/63357d6f7def2b51fd6fd7fb
 Content-Type: application/json
 
 {
-  "lat": 4545.4848,
-  "lng": 232.66
+  "lat": 22,
+  "lng": 99
 }
 ### 63357d6f7def2b51fd6fd7fb
 ###################################################       Users routes Tests       ################################

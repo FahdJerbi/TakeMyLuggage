@@ -43,6 +43,10 @@ const DriverSchema = new Schema(
     lng: {
       type: Number,
     },
+    location: {
+      type: [Number],
+      // default: undefined,
+    },
     // userId: {
     //     type: Schema.Types.ObjectId,
     //     required: true,
