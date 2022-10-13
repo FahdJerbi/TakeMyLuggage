@@ -17,9 +17,7 @@ const createRoutingMachine = () => {
   const position = [lat, lng];
 
   useEffect(() => {
-    if (!position) {
-      return null;
-    } else {
+    if (lat && lng) {
       axios
         .put(`/api/driver/location/${id}`, { location: position })
         .then((res) => console.log(res.data.data))
@@ -29,22 +27,23 @@ const createRoutingMachine = () => {
 
   console.log(position);
 
+  // ******************************    Leaflet LocateControl: Start  *************************
   //   add locate control to the map
-  const locateDriver = L.control.locate();
+  const locate = L.control.locate();
 
   //   get the coordinate (lat,lng) using  Leaflet "locationfound" event
-  const l = map.on("locationfound", (e) => {
+  const getCoordinates = map.on("locationfound", (e) => {
     setLat(e.latitude);
     setLng(e.longitude);
     // console.log("latitude:", e.latitude, "longitude:", e.longitude);
   });
 
-  //   console.log(l);
+  // ******************************    Leaflet LocateControl: End  *************************
 
-  return locateDriver;
+  return locate;
 };
 
 //   *****************************************
 
-const NewLocate = createControlComponent(createRoutingMachine);
-export default NewLocate;
+const LocateDriver = createControlComponent(createRoutingMachine);
+export default LocateDriver;

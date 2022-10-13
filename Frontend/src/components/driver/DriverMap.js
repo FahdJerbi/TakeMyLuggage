@@ -6,7 +6,7 @@ import "./DriverMap.css";
 import SwitcherContainer from "./SwitcherContainer";
 import DriverLocation from "./DriverLocation";
 import LocateCtrl from "./LocateCtrl";
-import NewLocate from "./NewLocate";
+import LocateDriver from "./LocateDriver";
 
 const DriverMap = () => {
   const Tunisie = [33.88, 9.53];
@@ -36,10 +36,8 @@ const DriverMap = () => {
           />
           {/* leaflet routing machine component */}
           {/* <DriverRoutingMachine /> */}
-          {/* <DriverLocation /> */}
-          {/* <LocateCtrl /> */}
-
-          <NewLocate />
+          {/* Locate Driver component */}
+          <LocateDriver />
         </MapContainer>
       </div>
     </div>
