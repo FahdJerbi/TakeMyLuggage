@@ -9,6 +9,7 @@ import { getActiveDrivers } from "../../redux/userOrderSlice";
 import "leaflet-easybutton/src/easy-button.js";
 import "leaflet-easybutton/src/easy-button.css";
 import "font-awesome/css/font-awesome.min.css";
+import Truck from "../../assets/fastTruck.png";
 // --------------------------------------------
 
 const createRoutingMachine = () => {
@@ -23,11 +24,19 @@ const createRoutingMachine = () => {
 
   console.log("Drivers:", drivers);
 
+  // define a custom marker for drivers  !!
+  const driverMarker = L.icon({
+    iconUrl: Truck,
+    iconSize: [40, 40],
+    // iconAnchor: [22, 94],
+    popupAnchor: [-3, -15],
+  });
+
   return (
     <div>
       {drivers?.map((d) => {
         return (
-          <Marker key={d._id} position={d.location}>
+          <Marker key={d._id} position={d.location} icon={driverMarker}>
             <Popup> {d.firstName} </Popup>
           </Marker>
         );
