@@ -41,9 +41,10 @@ const OrderForm = ({
   // 3- map through drivers in the from below
 
   // 4- get driver id
-  // const [driverId, setDriverId] = useState({
+  // const [driverId, setDriverId] = useState();
+  //   {
   //   Driver: "",
-  // });
+  // }
 
   // console.log("driverID:", driverId);
 
@@ -55,9 +56,10 @@ const OrderForm = ({
     EndPoint: "",
     Distance: "",
     Time: "",
+    Driver: "",
   });
 
-  // console.log(formData);
+  console.log(formData);
 
   const [responseMsg, setResponseMsg] = useState("");
   const [error, setError] = useState("");
@@ -99,10 +101,12 @@ const OrderForm = ({
             end_lng: end_x,
             distance: pathDistance,
             time: pathTime,
-            // driverId: driverId,
+            driverId: formData.Driver,
+            // console.log(driverId),
           })
           .then((res) => {
             console.log("ok");
+            console.log(res.data);
             setResponseMsg(res.data.message);
           })
           .catch((error) => {
@@ -126,8 +130,19 @@ const OrderForm = ({
     // });
   };
 
+  // track input changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // console.log(formData);
+  };
+
   return (
-    <Box component="form">
+    <Box
+      component="form"
+      onChange={(e) => {
+        handleChange(e);
+      }}
+    >
       {/* <Toolbar /> */}
       {/* <TextField
         value={start_y && start_x ? formData.StartPoint : ""}
@@ -153,9 +168,9 @@ const OrderForm = ({
       /> */}
       <TextField
         value={formData.Distance || ""} //te5dem
-        onChange={(e) => {
-          setFormData({ ...formData, [e.target.name]: e.target.value });
-        }}
+        // onChange={(e) => {
+        //   setFormData({ ...formData, [e.target.name]: e.target.value });
+        // }}
         name="Distance"
         placeholder="Test Data"
         sx={{
@@ -172,9 +187,9 @@ const OrderForm = ({
       />
       <TextField
         value={formData.Time || ""} //te5dem
-        onChange={(e) => {
-          setFormData({ ...formData, [e.target.name]: e.target.value });
-        }}
+        // onChange={(e) => {
+        //   setFormData({ ...formData, [e.target.name]: e.target.value });
+        // }}
         name="Time"
         placeholder="Test Data"
         sx={{ m: 1, width: "25ch" }}
@@ -185,7 +200,7 @@ const OrderForm = ({
         }}
       />
       <TextField
-        // defaultValue=""
+        defaultValue=""
         // required
         // fullWidth
         sx={{ m: 1, width: "25ch" }}
@@ -194,7 +209,7 @@ const OrderForm = ({
         label="Driver"
         name="Driver"
         // value={driverId}
-        // onChange={handleChange}
+        onChange={handleChange}
         // onChange={(e) => {
         //   // setDriverId(formData.Driver);
         //   // setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -203,7 +218,7 @@ const OrderForm = ({
         placeholder="Please select your role !"
       >
         {activeDrivers.map((activeDriver) => {
-          if (activeDriver.availability == true) {
+          if (activeDriver.availability === true) {
             return (
               <MenuItem key={activeDriver._id} value={activeDriver._id || ""}>
                 {activeDriver.firstName}
@@ -211,22 +226,6 @@ const OrderForm = ({
             );
           }
         })}
-
-        {/* <MenuItem
-        // value={1}
-        >
-          Driver 1
-        </MenuItem>
-        <MenuItem
-        // value={2}
-        >
-          Driver 2
-        </MenuItem>
-        <MenuItem
-        // value={2}
-        >
-          Driver 3
-        </MenuItem> */}
       </TextField>
 
       {/* Order confirmation message */}

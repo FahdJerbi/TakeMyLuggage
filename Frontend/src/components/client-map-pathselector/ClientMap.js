@@ -4,6 +4,7 @@ import RoutingMachine from "./RoutingMachine";
 import ClientPathSelector from "./ClientPathSelector";
 import "./ClientMap.css";
 import DriverPosition from "./DriverPosition";
+import LocateClient from "./LocateClient";
 
 const ClientMap = () => {
   const Tunisie = [33.88, 9.53];
@@ -21,8 +22,10 @@ const ClientMap = () => {
         />
         {/* leaflet routing machine component */}
         <RoutingMachine />
-
+        {/* Driver Location comp */}
         <DriverPosition />
+        {/* Client Location comp */}
+        <LocateClient />
       </MapContainer>
     </div>
   );

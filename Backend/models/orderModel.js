@@ -29,8 +29,9 @@ const OrderSchema = new Schema(
     time: schemaDetails, // zid thabet
     // // assign the driver
     driverId: {
-      type: String,
-      // required: true,
+      type: Schema.Types.ObjectId,
+      required: true,
+      // ref: "Driver",
     },
     userId: {
       type: Schema.Types.ObjectId,

@@ -4,7 +4,8 @@ const User = require("../../models/userModel");
 
 module.exports = async (req, res) => {
   try {
-    let { start_lat, start_lng, end_lat, end_lng, distance, time } = req.body;
+    let { start_lat, start_lng, end_lat, end_lng, distance, time, driverId } =
+      req.body;
     let { id } = req.params;
     let user = await User.findById(id);
 
@@ -17,6 +18,7 @@ module.exports = async (req, res) => {
       time,
       // Driver,
       userId: user._id,
+      driverId,
     });
 
     // save the order into the DB

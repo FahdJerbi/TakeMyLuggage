@@ -9,10 +9,11 @@ import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getRouteData } from "../../redux/routingMachineSlice";
 import OrderForm from "./OrderForm";
+import "leaflet.locatecontrol";
 
 const createRoutingMachine = () => {
   const map = useMap();
-  const userPathsState = useSelector((state) => state.routingMachineData);
+  const { clientLocation } = useSelector((state) => state.routingMachineData);
   const dispatch = useDispatch();
 
   // // ---------------------  Get Driver position --------------------------
@@ -31,8 +32,6 @@ const createRoutingMachine = () => {
   //     userMarker.addTo(map);
   //   });
   // }, [map]);
-
-  // console.log(position);
 
   // Routing machine control
   const myRoute = L.Routing.control({

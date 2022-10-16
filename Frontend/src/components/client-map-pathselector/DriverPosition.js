@@ -22,7 +22,7 @@ const createRoutingMachine = () => {
     axios.get("/api/admin/getDrivers").then((res) => setDrivers(res.data.data));
   }, [Map]);
 
-  console.log("Drivers:", drivers);
+  // console.log("Drivers:", drivers);
 
   // define a custom marker for drivers  !!
   const driverMarker = L.icon({
