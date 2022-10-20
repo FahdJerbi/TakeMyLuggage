@@ -84,7 +84,14 @@ Content-Type: application/json
 {
   "location": "[000333,055553]"
 }
-### 63357d6f7def2b51fd6fd7fb
+
+#### driver: Order delivered  
+PATCH http://localhost:8000/api/driver/confirmRequest/634b585cbc8ec16832feea76
+Content-Type: application/json
+
+{
+  "delivered": true
+}
 ###################################################       Users routes Tests       ################################
 # get all users 
 GET http://localhost:8000/api/admin/getUsers

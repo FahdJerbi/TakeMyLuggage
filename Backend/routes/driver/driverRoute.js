@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/getRequest/:id", require("./getRequest"));
 
 // accept order request
-router.post("/confirmRequest", require("./confirmRequest"));
+router.patch("/confirmRequest/:id", require("./confirmRequest"));
 
 // change availability:
 router.put("/availability/:id", require("./driverAvailability"));

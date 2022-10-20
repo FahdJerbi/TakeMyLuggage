@@ -5,6 +5,10 @@ import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import { Typography } from "@mui/material";
 // --------------------------------   my components imports ---------------
 import DriverCard from "./DriverCard";
 // import "./styles.css";
@@ -12,6 +16,11 @@ import DriverCard from "./DriverCard";
 const drawerWidth = 300;
 
 const DriverSideBar = () => {
+  // Driver infos
+  const email = localStorage.getItem("mail");
+  const fname = localStorage.getItem("fname");
+  const lname = localStorage.getItem("lname");
+
   return (
     <Drawer
       sx={{
@@ -28,7 +37,37 @@ const DriverSideBar = () => {
       variant="permanent"
       anchor="left"
     >
-      <Toolbar />
+      {/* ******************   Avatar: Start  **************** */}
+      <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
+        <IconButton sx={{ p: 1 }}>
+          <Avatar
+            sx={{ width: 70, height: 70 }}
+            alt="User"
+            src="/static/images/avatar/2.jpg"
+          />
+        </IconButton>
+      </Tooltip>
+      <Typography
+        style={{
+          fontFamily: "Roboto Condensed, sans-serif",
+        }}
+        id="admin-name"
+        variant="h5"
+      >
+        {`${fname} ${lname} `}
+      </Typography>
+      <Typography
+        id="admin-email"
+        style={{
+          fontFamily: "Roboto Condensed, sans-serif",
+          fontSize: "12px",
+          marginBottom: "10px",
+        }}
+      >
+        {email}
+      </Typography>
+      {/* ******************   Avatar: End  **************** */}
+
       <Divider />
 
       {/* *********************    accept User Orders Component ******************** */}

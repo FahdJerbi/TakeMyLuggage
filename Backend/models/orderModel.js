@@ -27,6 +27,11 @@ const OrderSchema = new Schema(
     end_lng: schemaDetails,
     distance: schemaDetails,
     time: schemaDetails, // zid thabet
+    bookingTime: String, // zid thabet
+    delivered: {
+      type: Boolean,
+      default: false,
+    },
     // // assign the driver
     driverId: {
       type: Schema.Types.ObjectId,

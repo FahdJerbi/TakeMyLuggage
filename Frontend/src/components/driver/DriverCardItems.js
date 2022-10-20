@@ -11,6 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete"; // delete Icon
 import EditIcon from "@mui/icons-material/Edit"; // edit Icon
 import EditLocationAltIcon from "@mui/icons-material/EditLocationAlt"; // edit location
 import Button from "@mui/material/Button";
+import "./DriverMap.css";
 
 // -------------------------------------------------------
 import axios from "axios";
@@ -46,8 +47,16 @@ function OrderCardItems({ _id, distance, time, userId }) {
           <Typography>time Time:{time} min </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <Button>Accept</Button>
+          {/* <Button>Accept</Button> */}
 
+          <Button
+            id="successfully-delivered"
+            // style={{
+            //   border: "1px red solid",
+            // }}
+          >
+            Order has delivered
+          </Button>
           <Button>Cancel</Button>
         </CardActions>
       </Card>
