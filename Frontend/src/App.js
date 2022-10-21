@@ -14,59 +14,61 @@ import Dashboard from "./components/admin/Dashboard";
 import Users from "./components/admin/Users";
 import Drivers from "./components/admin/driversList/Drivers";
 import Orders from "./components/admin/ordersList/Orders";
+import HomePage from "./components/landing-page/HomePage";
 
 export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Layout />}>
-          {/* Public routes */}
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
+        {/* Public routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-          {/* create a private route for client map */}
+        {/*  Client private route */}
+        <Route
+          path="/map"
+          element={
+            <UserPrivateRoute>
+              <ClientMap />
+            </UserPrivateRoute>
+          }
+        />
+
+        {/*  Driver private route */}
+        <Route
+          path="/driver"
+          element={
+            <DriverPrivateRoute>
+              <DriverMap />
+            </DriverPrivateRoute>
+          }
+        />
+
+        {/*  Admin Dashboard */}
+        <Route
+          path="/admin"
+          element={
+            // <AdminPrivateRoute>
+            <DashboardLayout />
+            // </AdminPrivateRoute>
+          }
+        >
           <Route
-            path="map"
+            index
             element={
-              <UserPrivateRoute>
-                <ClientMap />
-              </UserPrivateRoute>
+              <AdminPrivateRoute>
+                <Dashboard />
+              </AdminPrivateRoute>
             }
           />
-
-          {/*  Driver private route */}
-
-          <Route
-            path="driver"
-            element={
-              <DriverPrivateRoute>
-                <DriverMap />
-              </DriverPrivateRoute>
-            }
-          />
-
-          {/*  Admin Dashboard */}
-          <Route
-            path="admin"
-            element={
-              // <AdminPrivateRoute>
-              <DashboardLayout />
-              // </AdminPrivateRoute>
-            }
-          >
-            <Route
-              index
-              element={
-                <AdminPrivateRoute>
-                  <Dashboard />
-                </AdminPrivateRoute>
-              }
-            />
-            <Route path="orders" element={<Orders />} />
-            <Route path="users" element={<Users />} />
-            <Route path="drivers" element={<Drivers />} />
-          </Route>
+          <Route path="orders" element={<Orders />} />
+          <Route path="users" element={<Users />} />
+          <Route path="drivers" element={<Drivers />} />
         </Route>
+
+        {/* create a private route for client map */}
+        {/* </Route> */}
       </Routes>
     </div>
   );
