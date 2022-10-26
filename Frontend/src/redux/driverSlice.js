@@ -62,11 +62,39 @@ export const getDriverLocation = createAsyncThunk(
     return response;
   }
 );
+// ------------------------------------   Order Delivered thunk   ---------------------
+// create the orderDelivered thunk
+// export const orderDelivered = createAsyncThunk(
+//   "driver/orderDelivered",
+//   async (id, delivered) => {
+//     const response = await axios.patch(
+//       `/api/driver/confirmRequest/${id}`,
+//       delivered
+//     );
+//     return response;
+//   }
+// );
+export const orderDelivered = createAsyncThunk(
+  "driver/orderDelivered",
+  async ({ id, delivered }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `/api/driver/confirmRequest/${id}`,
+        delivered
+      );
+      console.log("thunk is working !");
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response);
+    }
+  }
+);
 
 // set default state
 const initialState = {
   driverAvailability: [],
   driverLocation: [],
+  delivery: [],
   loading: false,
 };
 
@@ -98,6 +126,17 @@ export const driverSlice = createSlice({
       console.log(action);
     },
     [getDriverLocation.rejected]: (state, action) => {
+      state.loading = false;
+    },
+    // ***********   orderDelivered thunk   **********
+    [orderDelivered.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [orderDelivered.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.delivery = action.payload;
+    },
+    [orderDelivered.rejected]: (state, action) => {
       state.loading = false;
     },
   },

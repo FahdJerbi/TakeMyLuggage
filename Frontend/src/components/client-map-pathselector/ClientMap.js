@@ -5,28 +5,33 @@ import ClientPathSelector from "./ClientPathSelector";
 import "./ClientMap.css";
 import DriverPosition from "./DriverPosition";
 import LocateClient from "./LocateClient";
+import Navbar from "./Navbar";
 
 const ClientMap = () => {
   const Tunisie = [33.88, 9.53];
 
   return (
-    <div style={{ display: "flex" }}>
-      {/* user inputs component */}
-      <ClientPathSelector />
+    <div>
+      <Navbar />
 
-      {/* Map component */}
-      <MapContainer center={Tunisie} zoom={7}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {/* leaflet routing machine component */}
-        <RoutingMachine />
-        {/* Driver Location comp */}
-        <DriverPosition />
-        {/* Client Location comp */}
-        <LocateClient />
-      </MapContainer>
+      <div style={{ display: "flex" }}>
+        {/* user inputs component */}
+        <ClientPathSelector />
+
+        {/* Map component */}
+        <MapContainer center={Tunisie} zoom={7}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {/* leaflet routing machine component */}
+          <RoutingMachine />
+          {/* Driver Location comp */}
+          <DriverPosition />
+          {/* Client Location comp */}
+          <LocateClient />
+        </MapContainer>
+      </div>
     </div>
   );
 };

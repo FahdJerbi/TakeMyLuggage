@@ -7,38 +7,42 @@ import SwitcherContainer from "./SwitcherContainer";
 import DriverLocation from "./DriverLocation";
 import LocateCtrl from "./LocateCtrl";
 import LocateDriver from "./LocateDriver";
+import Navbar from "./Navbar";
 
 const DriverMap = () => {
   const Tunisie = [33.88, 9.53];
 
   return (
-    <div style={{ display: "flex" }}>
-      {/* user inputs component */}
-      <DriverSideBar />
+    <div>
+      <Navbar />
+      <div style={{ display: "flex" }}>
+        {/* user inputs component */}
+        <DriverSideBar />
 
-      {/* Map component */}
-      <div
-      // style={{ border: "5px solid pink" }}
-      >
-        <SwitcherContainer />
-
-        <MapContainer
-          center={Tunisie}
-          zoom={7}
-          style={{
-            position: "fixed",
-            // zIndex: "50",
-          }}
+        {/* Map component */}
+        <div
+        // style={{ border: "5px solid pink" }}
         >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {/* leaflet routing machine component */}
-          {/* <DriverRoutingMachine /> */}
-          {/* Locate Driver component */}
-          <LocateDriver />
-        </MapContainer>
+          <SwitcherContainer />
+
+          <MapContainer
+            center={Tunisie}
+            zoom={7}
+            style={{
+              position: "fixed",
+              // zIndex: "50",
+            }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {/* leaflet routing machine component */}
+            {/* <DriverRoutingMachine /> */}
+            {/* Locate Driver component */}
+            <LocateDriver />
+          </MapContainer>
+        </div>
       </div>
     </div>
   );

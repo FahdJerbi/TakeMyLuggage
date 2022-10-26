@@ -25,7 +25,7 @@ const createRoutingMachine = () => {
     }
   }, [position]);
 
-  console.log(position);
+  // console.log(position);
 
   // ******************************    Leaflet LocateControl: Start  *************************
   //   add locate control to the map

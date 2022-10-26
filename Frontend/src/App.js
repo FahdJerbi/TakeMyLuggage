@@ -14,14 +14,17 @@ import Dashboard from "./components/admin/Dashboard";
 import Users from "./components/admin/Users";
 import Drivers from "./components/admin/driversList/Drivers";
 import Orders from "./components/admin/ordersList/Orders";
-import HomePage from "./components/landing-page/HomePage";
+// import HomePage from "./components/landing-page/HomePage";
+// ---------------------------------------------
+// import Home from "./components/landing-page-2/Home";
 
 export default function App() {
   return (
     <div className="App">
       <Routes>
         {/* Public routes */}
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<Layout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
