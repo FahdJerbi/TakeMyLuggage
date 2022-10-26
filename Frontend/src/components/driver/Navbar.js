@@ -9,11 +9,75 @@ import {
   Tooltip,
   IconButton,
   Avatar,
+  Modal,
 } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
+import SettingsIcon from "@mui/icons-material/Settings";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+// import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Link } from "react-router-dom";
 // import "./layout.css";
 
+// *******************    Profile Modal: Start    ***********************
+
+const SettingsButton = () => {
+  // modal style
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "#121212",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  // modal state
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <Box>
+      <Button
+        onClick={handleOpen}
+        color="inherit"
+        style={{
+          fontFamily: "Roboto Condensed, sans-serif",
+          textDecoration: "none",
+          color: "whitesmoke",
+        }}
+        endIcon={<SettingsIcon />}
+      >
+        Settings
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          {/* <IconButton>
+            <CloseRoundedIcon />
+          </IconButton> */}
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Profile Modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Change Email or Profile Photo
+          </Typography>
+        </Box>
+      </Modal>
+    </Box>
+  );
+};
+
+// *******************    Profile Modal: End    ***********************
+
+// *******************    Navbar : Start    ***********************
 const Navbar = () => {
   // let user = localStorage.getItem("isUser");
   // let driver = localStorage.getItem("isDriver");
@@ -26,16 +90,8 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  // -------------------    Nav Changes    ------------------------
   const driverNav = (
     <Toolbar className="client-navbar">
-      {/* <Tooltip sx={{ flexGrow: 2 }} title="Open settings">
-        <IconButton sx={{ p: 1 }}>
-          <Avatar alt="User Sharp" src="/static/images/avatar/2.jpg" />
-        </IconButton>
-      </Tooltip>
-      <Typography>User@gmail.com</Typography> */}
-
       <Typography
         id="navbar-title"
         variant="h6"
@@ -59,8 +115,12 @@ const Navbar = () => {
           Logout
         </Link>
       </Button>
+
+      {/* Settings component */}
+      <SettingsButton />
     </Toolbar>
   );
+  // *******************    Navbar : End    ***********************
 
   // const driverNav = (
   //   <Toolbar>
