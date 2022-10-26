@@ -15,25 +15,8 @@ import "./DriverMap.css";
 // -------------------------------------------------------
 import axios from "axios";
 
-function OrderCardItems({ _id, distance, time, userId, delivered }) {
+function OrderDeliveredCard({ _id, distance, time, userId, delivered }) {
   // console.log("delivered:", delivered);
-
-  const [orderDelivery, setOrderDelivery] = useState(false);
-  // console.log("orderDelivery:", orderDelivery);
-
-  // handle delivery
-  const handleDelivery = async () => {
-    {
-      orderDelivery ? setOrderDelivery(false) : setOrderDelivery(true);
-    }
-    await axios
-      .patch(`/api/driver/confirmRequest/${_id}`, {
-        delivered: orderDelivery,
-      })
-      .then((res) => console.log(res.data.data))
-      .catch((err) => console.log(err)); // it's working !!
-    console.log("handleDelivery is working !!");
-  };
 
   return (
     <div>
@@ -51,7 +34,7 @@ function OrderCardItems({ _id, distance, time, userId, delivered }) {
           display: "flex",
           flexDirection: "column",
           margin: "5px",
-          border: "1px grey solid",
+          border: "1px yellow solid",
           backgroundColor: "#202727",
         }}
       >
@@ -74,8 +57,7 @@ function OrderCardItems({ _id, distance, time, userId, delivered }) {
           {/* <Button>Accept</Button> */}
 
           <Button
-            id="successfully-delivered"
-            onClick={() => handleDelivery()}
+            id="delivered"
             // style={{
             //   border: "1px red solid",
             // }}
@@ -89,4 +71,4 @@ function OrderCardItems({ _id, distance, time, userId, delivered }) {
   );
 }
 
-export default OrderCardItems;
+export default OrderDeliveredCard;
