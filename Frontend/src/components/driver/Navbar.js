@@ -16,66 +16,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 // import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Link } from "react-router-dom";
+import ProfileModal from "./navbar/ProfileModal";
 // import "./layout.css";
-
-// *******************    Profile Modal: Start    ***********************
-
-const SettingsButton = () => {
-  // modal style
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "#121212",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
-
-  // modal state
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  return (
-    <Box>
-      <Button
-        onClick={handleOpen}
-        color="inherit"
-        style={{
-          fontFamily: "Roboto Condensed, sans-serif",
-          textDecoration: "none",
-          color: "whitesmoke",
-        }}
-        endIcon={<SettingsIcon />}
-      >
-        Settings
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {/* <IconButton>
-            <CloseRoundedIcon />
-          </IconButton> */}
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Profile Modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Change Email or Profile Photo
-          </Typography>
-        </Box>
-      </Modal>
-    </Box>
-  );
-};
-
-// *******************    Profile Modal: End    ***********************
 
 // *******************    Navbar : Start    ***********************
 const Navbar = () => {
@@ -116,8 +58,8 @@ const Navbar = () => {
         </Link>
       </Button>
 
-      {/* Settings component */}
-      <SettingsButton />
+      {/* Profile component */}
+      <ProfileModal />
     </Toolbar>
   );
   // *******************    Navbar : End    ***********************
@@ -153,11 +95,7 @@ const Navbar = () => {
       position="fixed"
       // sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
     >
-      {/* <Toolbar> */}
-
       {driverNav}
-
-      {/* </Toolbar> */}
     </AppBar>
   );
 };
