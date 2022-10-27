@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Link } from "react-router-dom";
 
 // *******************    Profile Modal: Start    ***********************
@@ -64,12 +65,13 @@ const ProfileModal = () => {
           {/* <Typography
             id="modal-modal-title"
             variant="h6"
-            // component="h2"
+            component="h2"
           >
             Profile Modal
           </Typography> */}
 
           <Typography
+            // variant="h6"
             id="modal-modal-description"
             sx={{ mt: 2, textAlign: "center" }}
           >
@@ -84,34 +86,50 @@ const ProfileModal = () => {
             }}
           >
             {/* Profile Photo */}
-            <Box>
-              <Tooltip style={{ margin: "8px 0 8px 0" }} title="Profile Photo">
-                <IconButton sx={{ p: 1 }}>
-                  <Avatar
-                    sx={{ width: 90, height: 90 }}
-                    alt="User"
-                    src="/static/images/avatar/2.jpg"
-                  />
-                </IconButton>
-              </Tooltip>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                marginBottom: "20px",
+              }}
+            >
+              <Box>
+                <Tooltip
+                  style={{ margin: "8px 0 8px 0" }}
+                  title="Profile Photo"
+                >
+                  <IconButton sx={{ p: 0 }}>
+                    <Avatar
+                      sx={{ width: 100, height: 100 }}
+                      alt="User"
+                      src="/static/images/avatar/2.jpg"
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Typography
+                  style={{
+                    fontFamily: "Roboto Condensed, sans-serif",
+                  }}
+                  id="driver-name"
+                  variant="h6"
+                >
+                  My Name
+                </Typography>
+              </Box>
+
               <Button
                 type="button"
-                //   startIcon={<CheckCircleOutlineIcon />}
+                startIcon={<CloudUploadIcon />}
                 variant="contained"
+                sx={{
+                  height: "20px",
+                  fontSize: "10.5px",
+                }}
               >
                 Upload Photo
               </Button>
             </Box>
-
-            <Typography
-              style={{
-                fontFamily: "Roboto Condensed, sans-serif",
-              }}
-              id="driver-name"
-              variant="h6"
-            >
-              My Name
-            </Typography>
 
             {/* Profile Email */}
             <TextField
@@ -137,7 +155,7 @@ const ProfileModal = () => {
               //   flexDirection: "column",
               alignItems: "center",
               justifyContent: "space-around",
-              marginTop: "10px",
+              marginTop: "30px",
             }}
           >
             <Button
