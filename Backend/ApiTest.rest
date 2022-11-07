@@ -96,7 +96,13 @@ Content-Type: application/json
 #### Get driver Profile Photo
 GET http://localhost:8000/api/driver/profilePhoto/6368cf9724bca6e15dcbebc3
 
+#### driver Profile Info 
+PUT http://localhost:8000/api/driver/updateProfileInfo/6368cf9724bca6e15dcbebc3
+Content-Type: application/json
 
+{
+  "email": "kermit.frog@gmail.com"
+}
 ###################################################       Users routes Tests       ################################
 # get all users 
 GET http://localhost:8000/api/admin/getUsers

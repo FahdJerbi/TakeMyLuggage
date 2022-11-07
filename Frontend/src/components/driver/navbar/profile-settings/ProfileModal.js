@@ -15,11 +15,34 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Link } from "react-router-dom";
 import ProfilePhoto from "./ProfilePhoto";
+import axios from "axios";
 // import ProfilePhoto from
 
 // *******************    Profile Modal: Start    ***********************
 
 const ProfileModal = () => {
+  const id = localStorage.getItem("id");
+  //----------- update profile info: Email/Paswword:  Start  --------------------
+  const [profileInfo, setProfileInfo] = useState({
+    email: "",
+  });
+
+  // handleEmailChange
+  const handleInfoChange = (e) => {
+    setProfileInfo({ ...profileInfo, [e.target.name]: e.target.value });
+    console.log(profileInfo);
+  };
+
+  // handle the update:
+  const handleInfoUpdate = () => {
+    axios
+      .put(`/api/driver/updateProfileInfo/${id}`, profileInfo)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  //----------- update profile info: Email/Paswword:  End  --------------------
+
   // modal style
   const style = {
     position: "absolute",
@@ -93,16 +116,17 @@ const ProfileModal = () => {
 
             {/* Profile Email */}
             <TextField
-              name="new-email"
+              name="email"
               placeholder="Enter your New Email..."
               sx={{ m: 1, width: "25ch" }}
               id="standard-basic"
               label="New Email"
+              onChange={(e) => handleInfoChange(e)}
             />
 
             {/* Profile Password */}
             <TextField
-              name="new-password"
+              name="password"
               placeholder="Enter your New Password..."
               sx={{ m: 1, width: "25ch" }}
               id="standard-basic"
@@ -122,6 +146,7 @@ const ProfileModal = () => {
               type="button"
               //   startIcon={<CheckCircleOutlineIcon />}
               variant="contained"
+              onClick={handleInfoUpdate}
             >
               Save
             </Button>
