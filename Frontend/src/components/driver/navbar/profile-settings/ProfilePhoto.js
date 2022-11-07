@@ -170,11 +170,7 @@ const ProfilePhoto = () => {
         ) : (
           <Tooltip style={{ margin: "8px 0 8px 0" }} title="Profile Photo">
             <IconButton sx={{ p: 0 }}>
-              <Avatar
-                sx={{ width: 100, height: 100 }}
-                alt="User"
-                src="/static/images/avatar/2.jpg"
-              />
+              <Avatar sx={{ width: 100, height: 100 }} alt="User" />
             </IconButton>
           </Tooltip>
         )}

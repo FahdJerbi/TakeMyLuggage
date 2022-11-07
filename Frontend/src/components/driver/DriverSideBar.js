@@ -11,15 +11,29 @@ import Tooltip from "@mui/material/Tooltip";
 import { Typography } from "@mui/material";
 // --------------------------------   my components imports ---------------
 import DriverCard from "./DriverCard";
+import axios from "axios";
 // import "./styles.css";
 
 const drawerWidth = 300;
 
 const DriverSideBar = () => {
+  const [profileImg, setProfileImg] = useState("");
+
+  // console.log(profileImg);
+
   // Driver infos
+  const id = localStorage.getItem("id");
   const email = localStorage.getItem("mail");
   const fname = localStorage.getItem("fname");
   const lname = localStorage.getItem("lname");
+
+  // import profile photo axios:
+  useEffect(() => {
+    axios
+      .get(`api/driver/profilePhoto/${id}`)
+      .then((res) => setProfileImg(res.data.driver[0].profileAvatar))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Drawer
@@ -39,15 +53,24 @@ const DriverSideBar = () => {
       anchor="left"
     >
       {/* ******************   Avatar: Start  **************** */}
-      <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
-        <IconButton sx={{ p: 1 }}>
-          <Avatar
-            sx={{ width: 70, height: 70 }}
-            alt="User"
-            src="/static/images/avatar/2.jpg"
-          />
-        </IconButton>
-      </Tooltip>
+      {profileImg ? (
+        <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
+          <IconButton sx={{ p: 1 }}>
+            <Avatar
+              sx={{ width: 100, height: 100 }}
+              alt="User"
+              src={profileImg}
+            />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
+          <IconButton sx={{ p: 1 }}>
+            <Avatar sx={{ width: 100, height: 100 }} alt="Profile" />
+          </IconButton>
+        </Tooltip>
+      )}
+
       <Typography
         style={{
           fontFamily: "Roboto Condensed, sans-serif",

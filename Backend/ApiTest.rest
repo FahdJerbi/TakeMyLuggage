@@ -92,6 +92,11 @@ Content-Type: application/json
 {
   "delivered": true
 }
+
+#### Get driver Profile Photo
+GET http://localhost:8000/api/driver/profilePhoto/6368cf9724bca6e15dcbebc3
+
+
 ###################################################       Users routes Tests       ################################
 # get all users 
 GET http://localhost:8000/api/admin/getUsers
