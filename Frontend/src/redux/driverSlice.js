@@ -63,18 +63,37 @@ export const getDriverLocation = createAsyncThunk(
   }
 );
 
+// --------------------------    Driver Profile Avatar Thunk  --------------------------
+export const driverProfileAvatar = createAsyncThunk(
+  "driver/profileAvatar",
+  async (id, driverAvatar) => {
+    try {
+      const response = await axios.put(
+        `/api/driver/updateProfilePhoto/${id}`,
+        driverAvatar
+      );
+      console.log('"Driver Avatar" thunk is working !');
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 // set default state
 const initialState = {
   driverAvailability: [],
   driverLocation: [],
   loading: false,
+  driverPhoto: {},
 };
 
 //  create slice
 export const driverSlice = createSlice({
   name: "driver",
   initialState,
-  //   reducers: {},
+  reducers: {},
   extraReducers: {
     // getAllOrders thunk
     [checkAvailability.pending]: (state, action) => {
@@ -98,6 +117,19 @@ export const driverSlice = createSlice({
       console.log(action);
     },
     [getDriverLocation.rejected]: (state, action) => {
+      state.loading = false;
+    },
+    // ------------   Driver Profile Avatar Thunk   ---------
+    [driverProfileAvatar.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [driverProfileAvatar.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.driverPhoto = action.payload;
+      // console.log(action);
+      // add toast
+    },
+    [driverProfileAvatar.rejected]: (state, action) => {
       state.loading = false;
     },
   },

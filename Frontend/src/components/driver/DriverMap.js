@@ -7,7 +7,7 @@ import SwitcherContainer from "./SwitcherContainer";
 import DriverLocation from "./DriverLocation";
 import LocateCtrl from "./LocateCtrl";
 import LocateDriver from "./LocateDriver";
-import Navbar from "./Navbar";
+import Navbar from "./navbar/Navbar";
 
 const DriverMap = () => {
   const Tunisie = [33.88, 9.53];

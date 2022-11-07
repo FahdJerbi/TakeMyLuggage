@@ -12,7 +12,12 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 // middleware
-app.use(express.json());
+// app.use(express.json());
+// increased limite to accept request with larger size, especially with Cloudinary
+app.use(express.json({ limit: "10mb", extended: true }));
+app.use(
+  express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 })
+);
 
 // user routes
 app.use("/api", require("./routes/user/userRoutes"));

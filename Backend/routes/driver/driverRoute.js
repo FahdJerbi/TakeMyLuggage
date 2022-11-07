@@ -14,4 +14,7 @@ router.put("/availability/:id", require("./driverAvailability"));
 // driver location:
 router.put("/location/:id", require("./driverLocation"));
 
+// driver Profile Update :
+router.put("/updateProfilePhoto/:id", require("./updateProfilePhoto"));
+
 module.exports = router;

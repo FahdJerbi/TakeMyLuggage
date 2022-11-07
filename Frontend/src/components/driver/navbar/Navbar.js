@@ -16,7 +16,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 // import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Link } from "react-router-dom";
-import ProfileModal from "./navbar/ProfileModal";
+import ProfileModal from "./profile-settings/ProfileModal";
 // import "./layout.css";
 
 // *******************    Navbar : Start    ***********************

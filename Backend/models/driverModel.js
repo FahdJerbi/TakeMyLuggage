@@ -21,6 +21,9 @@ const DriverSchema = new Schema(
       type: String,
       required: true,
     },
+    profileAvatar: {
+      type: String,
+    },
     isDriver: {
       type: Boolean,
       default: true,
