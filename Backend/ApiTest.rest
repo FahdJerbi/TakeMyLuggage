@@ -101,7 +101,8 @@ PUT http://localhost:8000/api/driver/updateProfileInfo/6368cf9724bca6e15dcbebc3
 Content-Type: application/json
 
 {
-  "email": "kermit.frog@gmail.com"
+  "email": "kermit@gmail.com",
+  "password": "123456Kermit."
 }
 ###################################################       Users routes Tests       ################################
 # get all users 

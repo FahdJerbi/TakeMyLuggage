@@ -1,20 +1,26 @@
 const Driver = require("../../models/driverModel");
+const bcrypt = require("bcryptjs");
 
 module.exports = async (req, res) => {
-  let { Email, Password } = req.body;
-
   try {
     let { id } = req.params;
+    let { email, password } = req.body;
+
+    // hash password:
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
+    // Update user email/password:
     const driver = await Driver.findByIdAndUpdate(
       id,
       {
-        $set: { ...req.body },
+        $set: { email, password: hashedPassword },
       },
       { new: true }
     );
 
     res.send({
-      message: '"Driver Profile Info" route is working !!',
+      message: "Profile Informations Changed Succeccfully !",
       data: driver,
     });
   } catch (error) {

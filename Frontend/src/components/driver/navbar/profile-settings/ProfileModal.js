@@ -131,6 +131,7 @@ const ProfileModal = () => {
               sx={{ m: 1, width: "25ch" }}
               id="standard-basic"
               label="New Password"
+              onChange={(e) => handleInfoChange(e)}
             />
           </Box>
           <Box
