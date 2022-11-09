@@ -47,12 +47,12 @@ const ProfilePhoto = () => {
   // upload image
   const uploadProfileImage = async () => {
     await axios
-      .put(`/api/driver/updateProfilePhoto/${id}`, {
+      .put(`/api/updateProfilePhoto/${id}`, {
         profileAvatar: profileImg,
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-    console.log('"Upload Profile" is working !');
+    console.log("Profile Photo Changed clicked !");
   };
 
   return (

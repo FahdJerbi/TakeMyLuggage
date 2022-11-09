@@ -1,30 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  Typography,
-  Button,
-  Divider,
-  Box,
-  Tooltip,
-  IconButton,
-  Avatar,
-  Modal,
-  TextField,
-} from "@mui/material";
+import { Typography, Button, Box, Modal, TextField } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Link } from "react-router-dom";
 import ProfilePhoto from "./ProfilePhoto";
 import axios from "axios";
-// import ProfilePhoto from
-
-// *******************    Profile Modal: Start    ***********************
 
 const ProfileModal = () => {
   const id = localStorage.getItem("id");
   //----------- update profile info: Email/Paswword:  Start  --------------------
   const [profileInfo, setProfileInfo] = useState({
     email: "",
+    password: "",
   });
 
   // handleEmailChange
@@ -35,10 +20,10 @@ const ProfileModal = () => {
 
   // handle the update:
   const handleInfoUpdate = () => {
-    // axios
-    //   .put(`/api/driver/updateProfileInfo/${id}`, profileInfo)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
+    axios
+      .put(`/api/updateProfileInfo/${id}`, profileInfo)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   //----------- update profile info: Email/Paswword:  End  --------------------
@@ -55,7 +40,6 @@ const ProfileModal = () => {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
-    // fontFamily:
   };
 
   // modal state

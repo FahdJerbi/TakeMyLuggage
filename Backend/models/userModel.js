@@ -21,6 +21,9 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    profileAvatar: {
+      type: String,
+    },
     isUser: {
       type: Boolean,
       default: true,

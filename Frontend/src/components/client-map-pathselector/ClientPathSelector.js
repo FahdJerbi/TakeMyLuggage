@@ -19,7 +19,7 @@ import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import "./ClientMap.css";
-
+import axios from "axios";
 // ----------------------------   my components ---------------
 import OrderForm from "./OrderForm";
 import OrderCard from "./OrderCard";
@@ -30,6 +30,7 @@ const drawerWidth = 300;
 
 const ClientPathSelector = () => {
   // user infos
+  const id = localStorage.getItem("id");
   const email = localStorage.getItem("mail");
   const fname = localStorage.getItem("fname");
   const lname = localStorage.getItem("lname");
@@ -61,6 +62,20 @@ const ClientPathSelector = () => {
   };
   // console.log(showApiRoute);
   // *******************************************
+
+  // ***************   import profile photo: Start   ****************
+  // hold image URL:
+  const [profileImg, setProfileImg] = useState();
+
+  // import the image:
+  useEffect(() => {
+    axios
+      .get(`api/profilePhoto/${id}`)
+      .then((res) => setProfileImg(res.data.user[0].profileAvatar))
+      .catch((err) => console.log(err));
+  }, []);
+  // ***************   import profile photo: End   ****************
+
   return (
     <Drawer
       sx={{
@@ -80,11 +95,30 @@ const ClientPathSelector = () => {
       anchor="left"
     >
       {/* ******************   Avatar  **************** */}
-      <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
+
+      {profileImg ? (
+        <Tooltip style={{ margin: "8px 0 8px 0" }} title="profile photo">
+          <IconButton sx={{ p: 1 }}>
+            <Avatar
+              sx={{ width: 100, height: 100 }}
+              alt="User"
+              src={profileImg}
+            />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <Tooltip style={{ margin: "8px 0 8px 0" }} title="profile photo">
+          <IconButton sx={{ p: 1 }}>
+            <Avatar sx={{ width: 100, height: 100 }} alt="Profile" />
+          </IconButton>
+        </Tooltip>
+      )}
+
+      {/* <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
         <IconButton sx={{ p: 1 }}>
           <Avatar sx={{ width: 70, height: 70 }} alt="User" />
         </IconButton>
-      </Tooltip>
+      </Tooltip> */}
       <Typography
         style={{
           fontFamily: "Roboto Condensed, sans-serif",
