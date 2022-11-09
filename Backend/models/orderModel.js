@@ -17,7 +17,10 @@ const OrderSchema = new Schema(
     end_lng: schemaDetails,
     distance: schemaDetails,
     time: schemaDetails,
-    deliveryDate: Date, // zid thabet
+    deliveryDate: {
+      type: Date, 
+      required: true,
+    }, // zid thabet
     // Price: schemaDetails, // zid thabet
     delivered: {
       type: Boolean,
