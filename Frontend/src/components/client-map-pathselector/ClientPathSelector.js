@@ -82,11 +82,7 @@ const ClientPathSelector = () => {
       {/* ******************   Avatar  **************** */}
       <Tooltip style={{ margin: "8px 0 8px 0" }} title="Open settings">
         <IconButton sx={{ p: 1 }}>
-          <Avatar
-            sx={{ width: 70, height: 70 }}
-            alt="User"
-            src="/static/images/avatar/2.jpg"
-          />
+          <Avatar sx={{ width: 70, height: 70 }} alt="User" />
         </IconButton>
       </Tooltip>
       <Typography

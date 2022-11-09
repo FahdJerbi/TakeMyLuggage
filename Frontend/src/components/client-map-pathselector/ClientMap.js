@@ -5,7 +5,7 @@ import ClientPathSelector from "./ClientPathSelector";
 import "./ClientMap.css";
 import DriverPosition from "./DriverPosition";
 import LocateClient from "./LocateClient";
-import Navbar from "./Navbar";
+import Navbar from "./client-navbar/Navbar";
 
 const ClientMap = () => {
   const Tunisie = [33.88, 9.53];
