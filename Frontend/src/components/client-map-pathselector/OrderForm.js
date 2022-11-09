@@ -12,6 +12,11 @@ import axios from "axios";
 import "./ClientMap.css";
 import Swal from "sweetalert2";
 
+// import dayjs from "dayjs";
+// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+// import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+
 const OrderForm = ({
   start_y,
   start_x,
@@ -102,6 +107,7 @@ const OrderForm = ({
             distance: pathDistance,
             time: pathTime,
             driverId: formData.Driver,
+            deliveryDate: formData.Date,
             // console.log(driverId),
           })
           .then((res) => {
@@ -122,12 +128,13 @@ const OrderForm = ({
     });
 
     // clear form inputs after submitting
-    // setFormData({
-    //   StartPoint: "",
-    //   EndPoint: "",
-    //   Distance: "",
-    //   Time: "",
-    // });
+    setFormData({
+      StartPoint: "",
+      EndPoint: "",
+      Distance: "",
+      Time: "",
+      Date: "",
+    });
   };
 
   // track input changes
@@ -200,6 +207,14 @@ const OrderForm = ({
         }}
       />
       <TextField
+        name="Date"
+        type="datetime-local"
+        // value={formData.Date || ""} //te5dem
+        sx={{ m: 1, width: "25ch" }}
+        id="basic"
+        label="Delivery Date"
+      />
+      <TextField
         defaultValue=""
         // required
         // fullWidth
@@ -210,11 +225,6 @@ const OrderForm = ({
         name="Driver"
         // value={driverId}
         onChange={handleChange}
-        // onChange={(e) => {
-        //   // setDriverId(formData.Driver);
-        //   // setFormData({ ...formData, [e.target.name]: e.target.value });
-        //   setDriverId({ ...driverId, [e.target.name]: e.target.value });
-        // }}
         placeholder="Please select your role !"
       >
         {activeDrivers.map((activeDriver) => {

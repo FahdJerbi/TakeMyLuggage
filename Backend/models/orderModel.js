@@ -1,13 +1,3 @@
-// *************   Schema details   ****************
-// start_lat {type: number , required}
-// start_lng {type: number , required}
-// end_lat {type: number , required}
-// end_lng {type: number , required}
-// distance
-// time
-// Driver
-// timestamps
-
 // imports
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -26,8 +16,9 @@ const OrderSchema = new Schema(
     end_lat: schemaDetails,
     end_lng: schemaDetails,
     distance: schemaDetails,
-    time: schemaDetails, // zid thabet
-    bookingTime: String, // zid thabet
+    time: schemaDetails,
+    deliveryDate: Date, // zid thabet
+    // Price: schemaDetails, // zid thabet
     delivered: {
       type: Boolean,
       default: false,
