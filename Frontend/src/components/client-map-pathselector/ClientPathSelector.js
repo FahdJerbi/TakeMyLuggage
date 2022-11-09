@@ -68,6 +68,7 @@ const ClientPathSelector = () => {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
+          height: "90%",
           marginTop: "64px",
           boxSizing: "border-box",
           backgroundColor: "#1a1d1d",
