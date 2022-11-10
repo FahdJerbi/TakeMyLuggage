@@ -52,7 +52,7 @@ const ProfilePhoto = () => {
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-    console.log("Profile Photo Changed clicked !");
+    // console.log("Profile Photo clicked !");
   };
 
   return (
