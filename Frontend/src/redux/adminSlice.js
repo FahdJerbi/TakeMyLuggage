@@ -50,10 +50,13 @@ export const deleteDriver = createAsyncThunk(
 
 // ------------------------------------   drivers Position thunk   ---------------------
 // create the getAllUsers thunk
-export const getDriversPosition = createAsyncThunk("admin/driversPosition", async () => {
-  const response = await axios.get("/api/admin/getDrivers");
-  return response.data.data;
-});
+export const getDriversPosition = createAsyncThunk(
+  "admin/driversPosition",
+  async () => {
+    const response = await axios.get("/api/admin/getDrivers");
+    return response.data.data;
+  }
+);
 
 // *************************************     ADMIN SLICE      *****************************
 const initialState = {

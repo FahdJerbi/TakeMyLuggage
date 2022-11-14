@@ -22,7 +22,7 @@ const createRoutingMachine = () => {
     axios.get("/api/admin/getDrivers").then((res) => setDrivers(res.data.data));
   }, [Map]);
 
-  // console.log("Drivers:", drivers);
+  console.log("Drivers:", drivers);
 
   // define a custom marker for drivers  !!
   const driverMarker = L.icon({
@@ -35,11 +35,13 @@ const createRoutingMachine = () => {
   return (
     <div>
       {drivers?.map((d) => {
-        return (
-          <Marker key={d._id} position={d.location} icon={driverMarker}>
-            <Popup> {d.firstName} </Popup>
-          </Marker>
-        );
+        if (d.availability == true && d.location.length > 0) {
+          return (
+            <Marker key={d._id} position={d.location} icon={driverMarker}>
+              <Popup> {d.firstName} </Popup>
+            </Marker>
+          );
+        }
       })}
     </div>
   );

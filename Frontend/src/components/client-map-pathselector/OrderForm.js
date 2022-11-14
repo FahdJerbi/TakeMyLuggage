@@ -8,14 +8,10 @@ import MenuItem from "@mui/material/MenuItem";
 import { Toolbar } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { getActiveDrivers } from "../../redux/userOrderSlice";
+import { getAllOrders } from "../../redux/adminSlice";
 import axios from "axios";
 import "./ClientMap.css";
 import Swal from "sweetalert2";
-
-// import dayjs from "dayjs";
-// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-// import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 const OrderForm = ({
   start_y,
@@ -36,11 +32,14 @@ const OrderForm = ({
   // 1- redux prep:
   const { activeDrivers } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  // const
 
-  // 2- get the drivers:
+  const { orders, loading } = useSelector((state) => state.admin);
+  console.log(orders);
+
+  // 2- get the drivers & orders "deliveryDate" :
   useEffect(() => {
     dispatch(getActiveDrivers());
+    dispatch(getAllOrders());
   }, []);
 
   // 3- map through drivers in the from below
@@ -62,9 +61,10 @@ const OrderForm = ({
     Distance: "",
     Time: "",
     Driver: "",
+    orderDate: "",
   });
 
-  // console.log(formData);
+  console.log(formData);
 
   const [responseMsg, setResponseMsg] = useState("");
   const [error, setError] = useState("");
@@ -107,7 +107,7 @@ const OrderForm = ({
             distance: pathDistance,
             time: pathTime,
             driverId: formData.Driver,
-            deliveryDate: formData.Date,
+            deliveryDate: formData.orderDate,
             // console.log(driverId),
           })
           .then((res) => {
@@ -207,7 +207,7 @@ const OrderForm = ({
         }}
       />
       <TextField
-        name="Date"
+        name="orderDate"
         type="datetime-local"
         // value={formData.Date || ""} //te5dem
         sx={{ m: 1, width: "25ch" }}
@@ -227,6 +227,10 @@ const OrderForm = ({
         onChange={handleChange}
         placeholder="Please select your role !"
       >
+        {orders.deliveryDate == formData.orderDate
+          ? console.log("this date is available")
+          : console.log("Oops, this date is not available !!")}
+
         {activeDrivers.map((activeDriver) => {
           if (activeDriver.availability === true) {
             return (

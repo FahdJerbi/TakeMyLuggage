@@ -18,7 +18,7 @@ const OrderSchema = new Schema(
     distance: schemaDetails,
     time: schemaDetails,
     deliveryDate: {
-      type: Date, 
+      type: Date,
       required: true,
     }, // zid thabet
     // Price: schemaDetails, // zid thabet
@@ -30,7 +30,7 @@ const OrderSchema = new Schema(
     driverId: {
       type: Schema.Types.ObjectId,
       required: true,
-      // ref: "Driver",
+      ref: "Driver",
     },
     userId: {
       type: Schema.Types.ObjectId,
