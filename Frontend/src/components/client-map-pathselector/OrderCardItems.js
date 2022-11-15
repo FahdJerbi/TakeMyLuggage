@@ -15,6 +15,7 @@ import EditLocationAltIcon from "@mui/icons-material/EditLocationAlt"; // edit l
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import "./ClientMap.css";
+import UpdateOrder from "./update-order/UpdateOrder";
 
 function OrderCardItems({ distance, time, _id }) {
   //   const [myOrders, setMyOrders] = useState([]);
@@ -22,7 +23,7 @@ function OrderCardItems({ distance, time, _id }) {
   const id = localStorage.getItem("id");
   const token = localStorage.getItem("auth-token");
 
-  console.log(_id, distance, time);
+  // console.log(_id, distance, time);
 
   // delete a specific order
   const handleDelete = () => {
@@ -32,7 +33,19 @@ function OrderCardItems({ distance, time, _id }) {
       .catch((error) => console.log(error));
   };
 
+  // delete a specific order
+  const handleUpdate = () => {
+    // console.log("update clicked");
+  };
   //   console.log(myOrders);
+
+  // ******************  Update  Order: Start  *******************
+  const [showMenu, setShowMenu] = useState(false);
+  const handleOpen = () => {
+    setShowMenu(!showMenu);
+  };
+
+  // ******************  Update  Order: End  *******************
 
   return (
     <div>
@@ -83,11 +96,29 @@ function OrderCardItems({ distance, time, _id }) {
           <IconButton onClick={handleDelete}>
             <DeleteIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handleOpen}>
             <EditLocationAltIcon />
           </IconButton>
         </CardActions>
       </Card>
+
+      {/* update order component */}
+      {showMenu ? <UpdateOrder /> : null}
+
+      {/* <div
+        style={{
+          border: "1px red solid",
+          position: "fixed",
+          zIndex: "5000",
+          marginTop: "-30%",
+          marginLeft: "300px",
+          width: "280px",
+          backgroundColor: "gray",
+          border: "1px red solid",
+        }}
+      >
+        {showMenu ? <UpdateOrder /> : null}
+      </div> */}
     </div>
   );
 }
