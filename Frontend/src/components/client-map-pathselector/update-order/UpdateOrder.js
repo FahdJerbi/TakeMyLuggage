@@ -13,40 +13,57 @@ import MenuItem from "@mui/material/MenuItem";
 import BorderColorTwoToneIcon from "@mui/icons-material/BorderColorTwoTone";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
+import { getActiveDrivers } from "../../../redux/userOrderSlice";
 
-const UpdateOrder = () => {
-  // **************************   Get Active Drivers : End  *******************
+const UpdateOrder = (props) => {
+  // {
+  //   start_lat,
+  //   start_lng,
+  //   end_lat,
+  //   end_lng,
+  //   distance,
+  //   time,
+  //   deliveryDate,
+  //   driverId,
+  //   _id,
+  // }
 
-  // store props values in state
-  // const [formData, setFormData] = useState({
-  //   StartPoint: "",
-  //   EndPoint: "",
-  //   Distance: "",
-  //   Time: "",
-  //   Driver: "",
-  //   orderDate: "",
-  // });
-
-  // console.log(formData);
+  // store update values in state
+  const [updateData, setUpdateData] = useState({
+    // StartPoint: "",
+    // EndPoint: "",
+    // Distance: "",
+    // Time: "",
+    Driver: "",
+    orderDate: "",
+  });
 
   const [responseMsg, setResponseMsg] = useState("");
   const [error, setError] = useState("");
 
   // handle change for all the inputs
   // useEffect(() => {
-  //   setFormData({
-  //     StartPoint: `N${start_y}, E${start_x}`,
-  //     EndPoint: `N${end_y}, E${end_x}`,
-  //     Distance: pathDistance,
-  //     Time: pathTime,
+  //   setUpdateData({
+  //     // StartPoint: `N${start_y}, E${start_x}`,
+  //     // EndPoint: `N${end_y}, E${end_x}`,
+  //     // Distance: pathDistance,
+  //     // Time: pathTime,
+  //     orderDate: props.deliveryDate,
   //   });
-  // }, [start_y, start_x, end_y, end_x, pathDistance, pathTime]);
+  // }, []);
 
-  // get user id and
-  const id = localStorage.getItem("id");
-  const token = localStorage.getItem("auth-token");
+  // **************************   Get Active Drivers : Start  *******************
+  // 1- redux prep:
+  const { activeDrivers } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  // send user login inputs to server
+  // 2- get the active drivers :
+  useEffect(() => {
+    dispatch(getActiveDrivers());
+  }, []);
+  // **************************   Get Active Drivers : End  *******************
+
   const handleOrder = async () => {
     // SweetAlert confirmation popup:
     // Swal.fire({
@@ -101,12 +118,29 @@ const UpdateOrder = () => {
 
   // track input changes
   const handleChange = (e) => {
-    // setFormData({ ...formData, [e.target.name]: e.target.value });
-    // console.log(formData);
+    setUpdateData({ ...updateData, [e.target.name]: e.target.value });
+    console.log(updateData);
+  };
+
+  // send updated inputs to server
+  const handleUpdate = () => {
+    axios
+      .put(`/api/update/${_id}`, {
+        // driverId: updateData.Driver,
+        deliveryDate: updateData.orderDate,
+      })
+      .then((res) => {
+        console.log(res);
+        console.log("updated succefully !!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <Box
+      id={props._id}
       component="form"
       onChange={(e) => {
         handleChange(e);
@@ -153,25 +187,26 @@ const UpdateOrder = () => {
       <TextField
         name="orderDate"
         type="datetime-local"
-        // value={formData.Date || ""} //te5dem
+        defaultValue={oldDate}
+        value={oldDate}
         sx={{ m: 1, width: "25ch" }}
         id="basic"
         label="Delivery Date"
       />
       <TextField
-        // defaultValue=""
+        name="Driver"
+        select
+        defaultValue=""
         // required
         // fullWidth
         sx={{ m: 1, width: "25ch" }}
         id="outlined-select-currency"
-        select
         label="Driver"
-        name="Driver"
         // value={driverId}
         onChange={handleChange}
         placeholder="Please select your role !"
       >
-        {/* {activeDrivers.map((activeDriver) => {
+        {activeDrivers.map((activeDriver) => {
           if (activeDriver.availability === true) {
             return (
               <MenuItem key={activeDriver._id} value={activeDriver._id || ""}>
@@ -179,13 +214,14 @@ const UpdateOrder = () => {
               </MenuItem>
             );
           }
-        })} */}
-        <MenuItem>Driver 1</MenuItem>
+        })}
+        {/* <MenuItem value={1}>Driver 1</MenuItem>
+        <MenuItem value={2}>Driver 2</MenuItem> */}
       </TextField>
 
       <Button
         type="button"
-        onClick={() => handleOrder()}
+        onClick={() => handleUpdate()}
         startIcon={<BorderColorTwoToneIcon />}
         variant="contained"
       >

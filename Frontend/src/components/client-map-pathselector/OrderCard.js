@@ -15,7 +15,7 @@ function OrderCard() {
     console.log("dispatch:", dispatch(userOrders(id)));
   }, []);
 
-  console.log("allOrders:", allOrders);
+  // console.log("allOrders:", allOrders);
 
   const [myOrders, setMyOrders] = useState([]);
 

@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./ClientMap.css";
 import UpdateOrder from "./update-order/UpdateOrder";
 
-function OrderCardItems({ distance, time, _id }) {
+function OrderCardItems(props) {
   //   const [myOrders, setMyOrders] = useState([]);
 
   const id = localStorage.getItem("id");
@@ -28,31 +28,25 @@ function OrderCardItems({ distance, time, _id }) {
   // delete a specific order
   const handleDelete = () => {
     axios
-      .delete(`/api/delete/${_id}`)
+      .delete(`/api/delete/${props._id}`)
       .then((res) => console.log(res.data.message))
       .catch((error) => console.log(error));
   };
 
-  // delete a specific order
-  const handleUpdate = () => {
-    // console.log("update clicked");
-  };
-  //   console.log(myOrders);
-
-  // ******************  Update  Order: Start  *******************
+  // ******************  show/hide Update Order menu: Start  *******************
   const [showMenu, setShowMenu] = useState(false);
   const handleOpen = () => {
     setShowMenu(!showMenu);
   };
 
-  // ******************  Update  Order: End  *******************
+  // ******************  show/hide Update Order menu: End  *******************
 
   return (
     <div>
       <Card
         className="card-item"
-        id={_id ? "active" : ""}
-        key={_id}
+        id={props._id ? "active" : ""}
+        key={props._id}
         sx={{
           width: 240,
           display: "flex",
@@ -83,9 +77,9 @@ function OrderCardItems({ distance, time, _id }) {
               color: "whitesmoke",
             }}
           >
-            Distance: ${distance} km
+            Distance: {props.distance} km
             <br />
-            Path Time: {time} min
+            Path Time: {props.time} min
             <br />
             price:
             <br />
@@ -103,7 +97,7 @@ function OrderCardItems({ distance, time, _id }) {
       </Card>
 
       {/* update order component */}
-      {showMenu ? <UpdateOrder /> : null}
+      {showMenu ? <UpdateOrder _id={props._id} orderInfo={props} /> : null}
 
       {/* <div
         style={{
