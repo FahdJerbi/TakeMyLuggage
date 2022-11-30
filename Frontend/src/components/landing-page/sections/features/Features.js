@@ -9,7 +9,7 @@ function Features() {
     <div>
       {/* <section className="features-icons bg-light text-center det-ails"> */}
       <div className="features-container">
-        <div className="row features-content">
+        <div className="features-content">
           <div className="col-lg-4 features">
             <div className="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
               {/* <div className="features-icons-icon d-flex  icon-bra-ails">
