@@ -1,0 +1,14 @@
+.fold {
+  width: 100%;
+  background-image: url("../../images/delivery.jpg");
+  background-color: #f4f5ff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+}
+
+.title {
+  padding-top: 150px;
+  /* border: 1px red solid; */
+}
