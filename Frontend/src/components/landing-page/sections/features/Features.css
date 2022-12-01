@@ -1,12 +1,17 @@
-/* .features-container {
-  background-color: #cfcfcf;
-} */
-
 .features-content {
+  /* border: 1px black solid; */
   background-color: #cfcfcf;
-  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
 }
 
-/* .features {
-  border: 1px red solid;
-} */
+.features {
+  /* border: 1px red solid; */
+  margin: 20px;
+}
+
+.feature-icons {
+  width: 50px;
+  /* size: 100px; */
+}

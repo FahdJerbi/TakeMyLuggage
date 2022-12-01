@@ -14,7 +14,7 @@ function Home() {
       <Services />
       <Features />
       <Contact />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
