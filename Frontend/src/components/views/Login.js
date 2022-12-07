@@ -17,6 +17,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { styled } from "@mui/material/styles";
+import PersonIcon from "@mui/icons-material/Person";
+import LockIcon from "@mui/icons-material/Lock";
+import "./Login.css";
 // ------------------------
 
 // function to grab css from official site
@@ -38,8 +42,29 @@ function Copyright(props) {
   );
 }
 
-// ******************************  Login component    ********************
+// Custom TextField
+const CustomTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "#05E6FA",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "green",
+  },
+  "& .MuiOutlinedInput-root": {
+    // "& fieldset": {
+    //   borderColor: "red",
+    // },
+    "&:hover fieldset": {
+      borderColor: "black",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#05E6FA",
+    },
+  },
+});
+
 const theme = createTheme();
+// ******************************  Login component    ********************
 
 // the login component
 export default function SignIn() {
@@ -115,30 +140,88 @@ export default function SignIn() {
   }, [error]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+    <div className="yeah">
+      <ThemeProvider theme={theme}>
+        <Container className="login" component="main" maxWidth="xs">
+          <CssBaseline />
           <Box
-            component="form"
-            onChange={handleChange}
-            noValidate
-            sx={{ mt: 1 }}
+            className="login-page"
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
-            <TextField
+            {/* <div className="login> */}
+            <Avatar sx={{ m: 1, bgcolor: "whitesmokes" }}>
+              {/* bgcolor: "secondary.main" */}
+              <LockOutlinedIcon sx={{ color: "black" }} />
+            </Avatar>
+            <Typography
+              sx={{
+                fontFamily: "Roboto Condensed, sans-serif",
+                color: "whitesmoke",
+              }}
+              component="h1"
+              variant="h5"
+            >
+              Sign in
+            </Typography>
+            <Box
+              component="form"
+              onChange={handleChange}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <CustomTextField
+                id="email"
+                label="Email Address"
+                name="email"
+                sx={{
+                  input: {
+                    color: "whitesmoke",
+                    "&::placeholder": {
+                      // <----- Add this.
+                      opacity: 0.5,
+                    },
+                    fontFamily: "Roboto Condensed, sans-serif",
+                  },
+                  // label: { color: "blue" },
+                }}
+                margin="normal"
+                required
+                fullWidth
+                autoComplete="email"
+                placeholder="Enter your email here"
+                InputProps={{
+                  startAdornment: <PersonIcon className="sign-in-icons" />,
+                }}
+              />
+              <CustomTextField
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                sx={{
+                  input: {
+                    color: "whitesmoke",
+                    "&::placeholder": {
+                      opacity: 0.5,
+                    },
+                    fontFamily: "Roboto Condensed, sans-serif",
+                  },
+                }}
+                margin="normal"
+                placeholder="Enter your password here"
+                required
+                fullWidth
+                autoComplete="current-password"
+                InputProps={{
+                  startAdornment: <LockIcon className="sign-in-icons" />,
+                }}
+              />
+              {/* <TextField
               margin="normal"
               required
               fullWidth
@@ -147,10 +230,11 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-              // onChange={handleChange}
-            />
-            <TextField
+              placeholder="Enter your email here"
+            /> */}
+              {/* <TextField
               margin="normal"
+              placeholder="Enter your password here"
               required
               fullWidth
               name="password"
@@ -158,41 +242,65 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              // onChange={handleChange}
-            />
-            <Box fontStyle={{ color: "red", fontSize: "0.8em" }}>{error}</Box>
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             /> */}
-            <Button
-              type="button"
-              onClick={() => {
-                handleLogin();
-              }}
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <ToastContainer />
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              <Box fontStyle={{ color: "red", fontSize: "0.8em" }}>{error}</Box>
+              {/* <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              /> */}
+              <Button
+                id="sign-in-btn"
+                type="button"
+                onClick={() => {
+                  handleLogin();
+                }}
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  fontFamily: "Roboto Condensed, sans-serif",
+                }}
+              >
+                Sign In
+              </Button>
+              <ToastContainer />
+              <Grid container>
+                {/* <Grid item xs>
+                  <Link
+                    sx={{
+                      color: "#5e5e5e",
+                      textDecoration: "none",
+                    }}
+                    className="sign-in-footer"
+                    href="#"
+                    variant="body2"
+                  >
+                    Forgot password?
+                  </Link>
+                </Grid> */}
+                <Grid item>
+                  <Link
+                  
+                    sx={{
+                      color: "#5e5e5e",
+                      textDecoration: "none",
+                      fontFamily: "Roboto Condensed, sans-serif",
+                    }}
+                    className="sign-in-footer"
+                    href="#"
+                    variant="body2"
+                  >
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            </Box>
+            {/* </div> */}
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+          <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 }
