@@ -181,7 +181,7 @@ const AdminNavbar = () => {
         </Box>
 
         <Button color="inherit">
-          <Link to="/login" onClick={handleLogout}>
+          <Link to="/login" onClick={handleLogout}> 
             Logout
           </Link>
         </Button>

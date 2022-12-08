@@ -51,7 +51,7 @@ const Navbar = () => {
             textDecoration: "none",
             color: "whitesmoke",
           }}
-          to="login"
+          to="/login"
           onClick={handleLogout}
         >
           Logout
