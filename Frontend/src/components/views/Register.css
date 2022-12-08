@@ -23,3 +23,18 @@
   color: rgb(167, 166, 166);
   margin-right: 10px;
 }
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  color: whitesmoke;
+  font-family: "Roboto Condensed", "sans-serif";
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  color: red;
+  font-family: "Roboto Condensed", "sans-serif";
+}
+
+.MuiButtonBase-root.MuiMenuItem-gutters {
+  font-family: "Roboto Condensed", "sans-serif";
+  font-size: 1.1rem;
+}

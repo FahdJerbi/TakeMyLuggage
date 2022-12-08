@@ -16,7 +16,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-// import { styled } from "@mui/material/styles";
 import LockIcon from "@mui/icons-material/Lock";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import "./Register.css";
@@ -250,9 +249,38 @@ export default function SignUp() {
                     }}
                   />
                 </Grid>
-
                 <Grid item xs={12}>
-                  <TextField
+                  <CustomTextField
+                    sx={{
+                      input: {
+                        color: "whitesmoke",
+                        "&::placeholder": {
+                          opacity: 0.5,
+                        },
+                        fontFamily: "Roboto Condensed, sans-serif",
+                      },
+                      "& .MuiSvgIcon-root": {
+                        color: "whitesmoke",
+                      },
+                    }}
+                    defaultValue=""
+                    required
+                    fullWidth
+                    id="outlined-select-currency"
+                    select
+                    label="Role"
+                    name="role"
+                    value={checkRole}
+                    onChange={handleChange}
+                    // InputProps={{
+                    //   startAdornment: <PersonIcon className="sign-in-icons" />,
+                    // }}
+                  >
+                    {/* <CustomMenuItem>yeah</CustomMenuItem> */}
+                    <MenuItem value={1}>User</MenuItem>
+                    <MenuItem value={2}>Driver</MenuItem>
+                  </CustomTextField>
+                  {/* <TextField
                     defaultValue=""
                     required
                     fullWidth
@@ -266,7 +294,7 @@ export default function SignUp() {
                   >
                     <MenuItem value={1}>User</MenuItem>
                     <MenuItem value={2}>Driver</MenuItem>
-                  </TextField>
+                  </TextField> */}
                 </Grid>
                 <Grid item xs={12}></Grid>
               </Grid>
