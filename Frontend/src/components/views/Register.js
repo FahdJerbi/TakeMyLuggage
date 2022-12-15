@@ -94,6 +94,11 @@ export default function SignUp() {
       });
   };
 
+  // switch to sign in page
+  const switchLoginPage = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="main-container">
       <ThemeProvider theme={theme}>
@@ -323,8 +328,9 @@ export default function SignUp() {
                       fontFamily: "Roboto Condensed, sans-serif",
                     }}
                     className="sign-up-footer"
-                    href="#"
+                    href="/login"
                     variant="body2"
+                    onClick={switchLoginPage}
                   >
                     Already have an account? Sign in
                   </Link>

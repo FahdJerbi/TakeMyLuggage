@@ -77,7 +77,7 @@ export default function SignIn() {
 
   const handleChange = (e) => {
     setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
-    notify();
+    // notify();
     // console.log(userInputs);
   };
 
@@ -129,8 +129,8 @@ export default function SignIn() {
         setError(error.response.data.message);
         console.log(error.response.data.message);
       });
-    notify();
-    console.log("notify is here !");
+    // notify();
+    // console.log("notify is here !");
   };
 
   useEffect(() => {
@@ -138,6 +138,11 @@ export default function SignIn() {
       setError("");
     }, 6000);
   }, [error]);
+
+  // switch to sign up page
+  const switchRegisterPage = () => {
+    navigate("/register");
+  };
 
   return (
     <div className="yeah">
@@ -287,7 +292,8 @@ export default function SignIn() {
                       fontFamily: "Roboto Condensed, sans-serif",
                     }}
                     className="sign-in-footer"
-                    href="#"
+                    href="/register"
+                    onClick={switchRegisterPage}
                     variant="body2"
                   >
                     {"Don't have an account? Sign Up"}
