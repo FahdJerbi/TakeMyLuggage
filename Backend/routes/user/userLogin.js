@@ -143,6 +143,7 @@ module.exports = async (req, res) => {
           message: "Driver logged in successfully !",
           token,
           isDriver: checkDriverLoginEmail.isDriver,
+          email: checkDriverLoginEmail.email,
           firstName: checkDriverLoginEmail.firstName,
           lastName: checkDriverLoginEmail.lastName,
           id: checkDriverLoginEmail._id,
