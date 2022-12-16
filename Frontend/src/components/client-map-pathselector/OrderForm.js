@@ -227,9 +227,9 @@ const OrderForm = ({
         onChange={handleChange}
         placeholder="Please select your role !"
       >
-        {orders.deliveryDate == formData.orderDate
+        {/* {orders.deliveryDate == formData.orderDate
           ? console.log("this date is available")
-          : console.log("Oops, this date is not available !!")}
+          : console.log("Oops, this date is not available !!")} */}
 
         {activeDrivers.map((activeDriver) => {
           if (activeDriver.availability === true) {

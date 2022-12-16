@@ -48,7 +48,7 @@ function Nav() {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/login">
-                Sign in
+                Sign in 
               </a>
             </li>
 

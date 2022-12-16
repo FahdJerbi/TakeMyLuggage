@@ -24,7 +24,7 @@ function Content() {
           </h6>
           <br />
           <h6>
-            <a className="btn btn-dark start start-two" href="#">
+            <a className="btn btn-dark start start-two" href="/register">
               Sign Up
             </a>
           </h6>
